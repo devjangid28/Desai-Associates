@@ -1,19 +1,24 @@
 .page {
   background-color: var(--cream);
   color: var(--ink);
-  padding: var(--u32);
   display: flex;
   flex-flow: column;
-  gap: var(--u64);
 }
 
 .demo-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: var(--u32);
+  color: var(--cream);
 }
 .demo-header__logo {
-  color: var(--ink);
+  color: var(--cream);
 }
 .demo-header__logo .brand-logo {
   font-size: 14px;
@@ -26,45 +31,11 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: var(--l1-ls);
-}
-
-.demo-hero {
-  min-height: 60vh;
-  display: flex;
-  flex-flow: column;
-  justify-content: center;
-  gap: var(--u48);
-}
-.demo-hero__title {
-  max-width: 12em;
-}
-.demo-hero__scroll {
-  color: var(--ink-50);
-}
-
-.demo-section {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--u64);
-  align-items: center;
-}
-.demo-section__img {
-  overflow: clip;
-}
-.demo-section__img img {
-  width: 100%;
-  height: 60vh;
-  object-fit: cover;
-}
-.demo-section__title {
-  max-width: 12em;
+  color: var(--cream-50);
 }
 
 @media (max-width: 991px) {
-  .page {
+  .demo-header {
     padding: var(--u24);
-  }
-  .demo-section {
-    grid-template-columns: 1fr;
   }
 }

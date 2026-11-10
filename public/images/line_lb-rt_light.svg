@@ -1,0 +1,15 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 100 100"
+  preserveAspectRatio="none"
+>
+  <line
+    x1="0%"
+    y1="100%"
+    x2="100%"
+    y2="0%"
+    stroke-width="1"
+    stroke="#F9F4EE"
+    vector-effect="non-scaling-stroke"
+  />
+</svg>

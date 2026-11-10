@@ -1,12 +1,45 @@
-import { useCallback, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import Lenis from 'lenis'
 import Preloader from './components/Preloader.jsx'
 import BrandLogo from './components/BrandLogo.jsx'
+import HeroVideo from './components/HeroVideo.jsx'
+import AboutSection from './components/AboutSection.jsx'
+import MissionSection from './components/MissionSection.jsx'
 import './App.css'
+
+gsap.registerPlugin(ScrollTrigger)
 
 export default function App() {
   const pageRef = useRef(null)
+  const lenisRef = useRef(null)
   const [loaded, setLoaded] = useState(false)
   const [short] = useState(() => Boolean(sessionStorage.getItem('hasVisited')))
+
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 1.2,
+      smoothWheel: true,
+      syncTouch: true,
+      touchMultiplier: 1.5,
+      allowNestedScroll: true,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      infinite: false,
+    })
+    lenis.stop()
+    lenisRef.current = lenis
+    lenis.on('scroll', ScrollTrigger.update)
+
+    const raf = (time) => lenis.raf(time * 1000)
+    gsap.ticker.add(raf)
+    gsap.ticker.lagSmoothing(0)
+
+    return () => {
+      gsap.ticker.remove(raf)
+      lenis.destroy()
+    }
+  }, [])
 
   const handleComplete = useCallback(() => {
     try {
@@ -16,6 +49,16 @@ export default function App() {
     }
     setLoaded(true)
   }, [])
+
+  useEffect(() => {
+    if (loaded) lenisRef.current?.start()
+  }, [loaded])
+
+  useEffect(() => {
+    if (!loaded) return
+    const t = setTimeout(() => ScrollTrigger.refresh(), 100)
+    return () => clearTimeout(t)
+  }, [loaded])
 
   return (
     <>
@@ -42,18 +85,11 @@ export default function App() {
         </header>
 
         <section className="demo-hero">
-          <h1 className="h1 demo-hero__title">Creators of Refined Living & Iconic Spaces</h1>
-          <span className="l1 demo-hero__scroll">scroll to explore</span>
+          <HeroVideo ready={loaded} />
         </section>
 
-        <section className="demo-section">
-          <div className="demo-section__img">
-            <img src="/images/project-j-3.webp" alt="" />
-          </div>
-          <h2 className="h2 demo-section__title">
-            Timeless architecture shaped by light, material and intention.
-          </h2>
-        </section>
+        <AboutSection />
+        <MissionSection />
       </div>
     </>
   )
