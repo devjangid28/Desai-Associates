@@ -1,0 +1,1308 @@
+{
+  "desktop": {
+    "loaded": true,
+    "pageErrors": [],
+    "roof": {
+      "method": "shared-buffer split",
+      "totalTris": 228640,
+      "roofTris": 6272,
+      "structureTris": 222368,
+      "roofBottomY": 2.69,
+      "tintMinUsed": 2,
+      "roofBox": {
+        "min": [
+          -4.191,
+          2.008,
+          -4.877
+        ],
+        "max": [
+          4.191,
+          2.715,
+          4.877
+        ]
+      },
+      "roofSize": [
+        8.382,
+        0.707,
+        9.754
+      ],
+      "roofThickness": 0.707,
+      "topSlabThickness": 0.075,
+      "footprintArea": 81.75,
+      "roofArea": 179.83,
+      "coveragePct": 220,
+      "topSkinCoveragePct": 95.1,
+      "modelTopY": 2.715,
+      "rayCheck": {
+        "hits": [
+          1.67,
+          1.67,
+          -0.13,
+          -0.13,
+          1.71,
+          0.84,
+          0,
+          0.73,
+          0.73,
+          -0.13,
+          -0.13,
+          -0.13,
+          -0.13,
+          0.05,
+          -0.13,
+          -0.13,
+          -0.13,
+          1.07,
+          1.07,
+          -0.13,
+          0.05,
+          -0.13,
+          -0.13,
+          -0.13,
+          -0.13,
+          -0.13,
+          -0.13,
+          -0.13,
+          -0.13,
+          -0.13,
+          -0.13,
+          -0.13,
+          -0.13,
+          -0.13,
+          -0.13,
+          -0.13,
+          -0.13,
+          -0.13,
+          -0.13,
+          -0.13,
+          0,
+          0,
+          -0.13,
+          -0.13,
+          -0.13,
+          -0.13,
+          null,
+          null,
+          null
+        ],
+        "above2m": 0,
+        "total": 49,
+        "pctAbove2m": 0
+      },
+      "structureMaterials": [
+        "(unnamed)"
+      ],
+      "tinted": [
+        {
+          "name": "(unnamed)",
+          "tinted": true
+        }
+      ],
+      "squashHook": {
+        "vertexMin": true,
+        "fragmentTint": true,
+        "excluded": false
+      }
+    },
+    "zones": {
+      "zones": [
+        {
+          "id": "laptops",
+          "name": "LAPTOPS + DISPLAYS",
+          "cx": 0,
+          "cz": 0,
+          "w": 5,
+          "d": 5,
+          "showDims": true
+        },
+        {
+          "id": "components",
+          "name": "COMPONENTS + GRAPHICS",
+          "cx": -0.669,
+          "cz": 2.158,
+          "w": 5,
+          "d": 5,
+          "showDims": true
+        },
+        {
+          "id": "service",
+          "name": "SERVICE + CONSULTATION",
+          "cx": 0.54,
+          "cz": 2.211,
+          "w": 5,
+          "d": 4.96,
+          "showDims": true
+        }
+      ],
+      "report": {
+        "method": "k-means (volume-weighted, sorted along facade axis)",
+        "k": 3,
+        "propsUsed": 65,
+        "centroids": [
+          {
+            "x": -0.559,
+            "z": -0.055
+          },
+          {
+            "x": -0.504,
+            "z": 2.632
+          },
+          {
+            "x": 0.529,
+            "z": 2.24
+          }
+        ],
+        "moved": [],
+        "zones": [
+          {
+            "id": "laptops",
+            "name": "LAPTOPS + DISPLAYS",
+            "cx": 0,
+            "cz": 0,
+            "w": 5,
+            "d": 5,
+            "showDims": true
+          },
+          {
+            "id": "components",
+            "name": "COMPONENTS + GRAPHICS",
+            "cx": -0.669,
+            "cz": 2.158,
+            "w": 5,
+            "d": 5,
+            "showDims": true
+          },
+          {
+            "id": "service",
+            "name": "SERVICE + CONSULTATION",
+            "cx": 0.54,
+            "cz": 2.211,
+            "w": 5,
+            "d": 4.96,
+            "showDims": true
+          }
+        ]
+      }
+    },
+    "facade": {
+      "method": "glass meshes on entrance wall (all transparent meshes with centre within 1.0 m of facade plane), lateral extent union",
+      "glassMeshes": 5,
+      "minS": -3.719,
+      "maxS": 2.705,
+      "sFacade": -0.507,
+      "sDoor": 3.667,
+      "doorFraction": 0.9375,
+      "doorWidth": 1.048,
+      "doorSide": "right"
+    },
+    "planFit": {
+      "dist": 7.597,
+      "height": 17.064,
+      "numericTX": 0,
+      "numericTY": 0,
+      "lensY": -0.0006,
+      "widthFrac": 101.5,
+      "heightFrac": 174,
+      "leftPct": 24.6,
+      "rightPct": 75.4,
+      "topPct": 9.5,
+      "bottomPct": 96.5,
+      "axis": "height",
+      "corners": [
+        [
+          -4.19,
+          0,
+          -4.88
+        ],
+        [
+          4.19,
+          0,
+          -4.88
+        ],
+        [
+          -4.19,
+          0.55,
+          -4.88
+        ],
+        [
+          4.19,
+          0.55,
+          -4.88
+        ],
+        [
+          -4.19,
+          0,
+          4.88
+        ],
+        [
+          4.19,
+          0,
+          4.88
+        ],
+        [
+          -4.19,
+          0.55,
+          4.88
+        ],
+        [
+          4.19,
+          0.55,
+          4.88
+        ]
+      ],
+      "cornerNdc": [
+        [
+          -0.398,
+          0.752,
+          0.995
+        ],
+        [
+          0.398,
+          0.752,
+          0.995
+        ],
+        [
+          -0.408,
+          0.809,
+          0.995
+        ],
+        [
+          0.408,
+          0.809,
+          0.995
+        ],
+        [
+          -0.492,
+          -0.931,
+          0.994
+        ],
+        [
+          0.492,
+          -0.931,
+          0.994
+        ],
+        [
+          -0.508,
+          -0.911,
+          0.994
+        ],
+        [
+          0.508,
+          -0.911,
+          0.994
+        ]
+      ]
+    },
+    "planRects": [
+      {
+        "p": 0.3,
+        "proj": {
+          "widthPct": 50.8,
+          "heightPct": 87,
+          "centerY": -6.1,
+          "centerX": 0,
+          "leftPct": 24.6,
+          "rightPct": 75.4,
+          "topPct": 9.5,
+          "bottomPct": 96.5,
+          "poly": [
+            {
+              "x": -0.5077098026160045,
+              "y": -0.9113162982834327
+            },
+            {
+              "x": -0.4924302185618912,
+              "y": -0.9306187216301517
+            },
+            {
+              "x": 0.4924302185618929,
+              "y": -0.9306187216301508
+            },
+            {
+              "x": 0.5077098026160062,
+              "y": -0.9113162982834315
+            },
+            {
+              "x": 0.407801602159824,
+              "y": 0.8093812783698496
+            },
+            {
+              "x": -0.4078016021598235,
+              "y": 0.8093812783698492
+            }
+          ],
+          "behind": false
+        }
+      },
+      {
+        "p": 0.34,
+        "proj": {
+          "widthPct": 50.8,
+          "heightPct": 87,
+          "centerY": -6.2,
+          "centerX": 0,
+          "leftPct": 24.6,
+          "rightPct": 75.4,
+          "topPct": 9.6,
+          "bottomPct": 96.6,
+          "poly": [
+            {
+              "x": -0.5077098026160055,
+              "y": -0.9125162982834298
+            },
+            {
+              "x": -0.49243021856189223,
+              "y": -0.9318187216301493
+            },
+            {
+              "x": 0.49243021856189223,
+              "y": -0.9318187216301493
+            },
+            {
+              "x": 0.5077098026160055,
+              "y": -0.9125162982834298
+            },
+            {
+              "x": 0.4078016021598236,
+              "y": 0.8081812783698507
+            },
+            {
+              "x": -0.4078016021598236,
+              "y": 0.8081812783698507
+            }
+          ],
+          "behind": false
+        }
+      },
+      {
+        "p": 0.38,
+        "proj": {
+          "widthPct": 50.5,
+          "heightPct": 86.1,
+          "centerY": -1.8,
+          "centerX": 0,
+          "leftPct": 24.8,
+          "rightPct": 75.2,
+          "topPct": 7.8,
+          "bottomPct": 93.9,
+          "poly": [
+            {
+              "x": -0.5045415179032948,
+              "y": -0.8579496080376181
+            },
+            {
+              "x": -0.4894492042124021,
+              "y": -0.8787674301468053
+            },
+            {
+              "x": 0.4894492042124021,
+              "y": -0.8787674301468053
+            },
+            {
+              "x": 0.5045415179032948,
+              "y": -0.8579496080376181
+            },
+            {
+              "x": 0.4057550416196584,
+              "y": 0.8434287530101426
+            },
+            {
+              "x": -0.4057550416196584,
+              "y": 0.8434287530101426
+            }
+          ],
+          "behind": false
+        }
+      }
+    ],
+    "labels": {
+      "p": 0.34,
+      "footprint": {
+        "leftPct": 24.6,
+        "rightPct": 75.4,
+        "topPct": 9.6,
+        "bottomPct": 96.6
+      },
+      "rows": [
+        {
+          "zone": "LAPTOPS + DISPLAYS",
+          "anchorScreenPct": {
+            "x": 50,
+            "y": 46.1
+          },
+          "anchorInsideFootprint": true,
+          "labelRectPx": {
+            "left": 880.5,
+            "right": 1039.5,
+            "top": 483,
+            "bottom": 512
+          },
+          "labelInsidePct": 100
+        },
+        {
+          "zone": "COMPONENTS + GRAPHICS",
+          "anchorScreenPct": {
+            "x": 46.1,
+            "y": 66.2
+          },
+          "anchorInsideFootprint": true,
+          "labelRectPx": {
+            "left": 783.9,
+            "right": 986.9,
+            "top": 700.6,
+            "bottom": 729.6
+          },
+          "labelInsidePct": 100
+        },
+        {
+          "zone": "SERVICE + CONSULTATION",
+          "anchorScreenPct": {
+            "x": 53.1,
+            "y": 66.7
+          },
+          "anchorInsideFootprint": true,
+          "labelRectPx": {
+            "left": 921.8,
+            "right": 1118.8,
+            "top": 744.4,
+            "bottom": 773.4
+          },
+          "labelInsidePct": 100
+        }
+      ],
+      "minLabelSeparationPx": 14.8,
+      "fits": true
+    },
+    "marker": {
+      "anchor": [
+        3.667,
+        0.4,
+        5.327
+      ],
+      "screenPct": {
+        "x": 72.3,
+        "y": 100.9
+      },
+      "doorX": 0.9375,
+      "sDoor": 3.667
+    },
+    "fixC": {
+      "rows": [
+        {
+          "p": 0.44,
+          "s": -0.187,
+          "yawDeg": 0,
+          "pitchDeg": -41.72,
+          "facadeScreenXPct": 47,
+          "doorScreenXPct": 86.5
+        },
+        {
+          "p": 0.48,
+          "s": -0.434,
+          "yawDeg": 0,
+          "pitchDeg": -9.55,
+          "facadeScreenXPct": 49.1,
+          "doorScreenXPct": 98.6
+        },
+        {
+          "p": 0.52,
+          "s": -0.507,
+          "yawDeg": 0,
+          "pitchDeg": 0,
+          "facadeScreenXPct": 50,
+          "doorScreenXPct": 95.9
+        },
+        {
+          "p": 0.56,
+          "s": 1.58,
+          "yawDeg": 0,
+          "pitchDeg": 0,
+          "facadeScreenXPct": 27.2,
+          "doorScreenXPct": 72.8
+        },
+        {
+          "p": 0.6,
+          "s": 3.667,
+          "yawDeg": 0,
+          "pitchDeg": 0,
+          "facadeScreenXPct": -8.5,
+          "doorScreenXPct": 50
+        },
+        {
+          "p": 0.64,
+          "s": 3.667,
+          "yawDeg": 0,
+          "pitchDeg": 0,
+          "facadeScreenXPct": 874.8,
+          "doorScreenXPct": 50
+        },
+        {
+          "p": 0.66,
+          "s": 3.491,
+          "yawDeg": 0,
+          "pitchDeg": 0,
+          "facadeScreenXPct": 318.1,
+          "doorScreenXPct": 38.2
+        },
+        {
+          "p": 0.7,
+          "s": 3.347,
+          "yawDeg": -35.57,
+          "pitchDeg": -1.47,
+          "facadeScreenXPct": -242.9,
+          "doorScreenXPct": 83
+        },
+        {
+          "p": 0.8,
+          "s": 2.547,
+          "yawDeg": -22.42,
+          "pitchDeg": -3.5,
+          "facadeScreenXPct": 355.6,
+          "doorScreenXPct": 44.3
+        },
+        {
+          "p": 0.9,
+          "s": 1.747,
+          "yawDeg": 0,
+          "pitchDeg": 0,
+          "facadeScreenXPct": 103.2,
+          "doorScreenXPct": 4.7
+        },
+        {
+          "p": 0.93,
+          "s": 3.599,
+          "yawDeg": 0,
+          "pitchDeg": 0,
+          "facadeScreenXPct": 354.8,
+          "doorScreenXPct": 44.9
+        },
+        {
+          "p": 0.96,
+          "s": -0.507,
+          "yawDeg": 0,
+          "pitchDeg": 0,
+          "facadeScreenXPct": 50,
+          "doorScreenXPct": 80.5
+        }
+      ],
+      "maxLateralStepPer001P": 1.369
+    },
+    "passChecks": {
+      "planPitch": {
+        "p034": -66.00000000000003,
+        "p036": -66.00000000000003,
+        "pass": true
+      },
+      "roofHidden": {
+        "opacity034": 0,
+        "opacity036": 0,
+        "pass": true
+      },
+      "cutYPlan": {
+        "cutY034": 0.55,
+        "cutY036": 0.55,
+        "pass": true
+      },
+      "footprint": {
+        "h034": 87,
+        "h036": 86.4,
+        "w034": 50.8,
+        "w036": 50.5,
+        "passDesktop": false,
+        "passMobile": false
+      },
+      "wallsRestored": {
+        "cutY": 2.8448,
+        "uPlan": 0,
+        "pitch": 0,
+        "glassVisible": true,
+        "pass": true
+      },
+      "roofReturned": {
+        "diff": 0,
+        "pass": true
+      },
+      "walkDepth": {
+        "rows": [
+          {
+            "p": 0.66,
+            "depthPct": 12.3,
+            "z": 3.677
+          },
+          {
+            "p": 0.68,
+            "depthPct": 13.78,
+            "z": 3.533
+          },
+          {
+            "p": 0.7,
+            "depthPct": 15.25,
+            "z": 3.389
+          },
+          {
+            "p": 0.72,
+            "depthPct": 16.73,
+            "z": 3.245
+          },
+          {
+            "p": 0.74,
+            "depthPct": 18.2,
+            "z": 3.101
+          },
+          {
+            "p": 0.76,
+            "depthPct": 19.68,
+            "z": 2.958
+          },
+          {
+            "p": 0.78,
+            "depthPct": 21.15,
+            "z": 2.814
+          },
+          {
+            "p": 0.8,
+            "depthPct": 22.63,
+            "z": 2.67
+          },
+          {
+            "p": 0.82,
+            "depthPct": 24.1,
+            "z": 2.526
+          },
+          {
+            "p": 0.84,
+            "depthPct": 25.58,
+            "z": 2.382
+          },
+          {
+            "p": 0.86,
+            "depthPct": 27.05,
+            "z": 2.238
+          },
+          {
+            "p": 0.88,
+            "depthPct": 28.53,
+            "z": 2.095
+          },
+          {
+            "p": 0.9,
+            "depthPct": 30,
+            "z": 1.951
+          }
+        ],
+        "maxDepth": 30,
+        "pass": true
+      },
+      "outsideAt096": {
+        "inside": false,
+        "pass": true
+      },
+      "insideAt066": {
+        "inside": true,
+        "pass": true
+      }
+    },
+    "depth": {
+      "rows": [
+        {
+          "p": 0.66,
+          "depthPct": 12.3,
+          "z": 3.677
+        },
+        {
+          "p": 0.68,
+          "depthPct": 13.78,
+          "z": 3.533
+        },
+        {
+          "p": 0.7,
+          "depthPct": 15.25,
+          "z": 3.389
+        },
+        {
+          "p": 0.72,
+          "depthPct": 16.73,
+          "z": 3.245
+        },
+        {
+          "p": 0.74,
+          "depthPct": 18.2,
+          "z": 3.101
+        },
+        {
+          "p": 0.76,
+          "depthPct": 19.68,
+          "z": 2.958
+        },
+        {
+          "p": 0.78,
+          "depthPct": 21.15,
+          "z": 2.814
+        },
+        {
+          "p": 0.8,
+          "depthPct": 22.63,
+          "z": 2.67
+        },
+        {
+          "p": 0.82,
+          "depthPct": 24.1,
+          "z": 2.526
+        },
+        {
+          "p": 0.84,
+          "depthPct": 25.58,
+          "z": 2.382
+        },
+        {
+          "p": 0.86,
+          "depthPct": 27.05,
+          "z": 2.238
+        },
+        {
+          "p": 0.88,
+          "depthPct": 28.53,
+          "z": 2.095
+        },
+        {
+          "p": 0.9,
+          "depthPct": 30,
+          "z": 1.951
+        }
+      ],
+      "maxDepth": 30
+    },
+    "reversal": {
+      "same": true,
+      "maxCamDiff": 0,
+      "fwd": {
+        "cam": [
+          0,
+          17.06409251912679,
+          7.693094336365317
+        ],
+        "fov": 32,
+        "effects": {
+          "p": 0.35,
+          "cutY": 0.55,
+          "uPlan": 1,
+          "roofLiftT": 1,
+          "roofOpacity": 0,
+          "nameOpacity": 0,
+          "labelsOpacity": 0.5,
+          "insideValue": 0,
+          "planAmt": 1
+        }
+      },
+      "back": {
+        "cam": [
+          0,
+          17.06409251912679,
+          7.693094336365317
+        ],
+        "fov": 32,
+        "effects": {
+          "p": 0.35,
+          "cutY": 0.55,
+          "uPlan": 1,
+          "roofLiftT": 1,
+          "roofOpacity": 0,
+          "nameOpacity": 0,
+          "labelsOpacity": 0.5,
+          "insideValue": 0,
+          "planAmt": 1
+        }
+      }
+    },
+    "propOffsets": 0,
+    "perf": {
+      "jsOnlyMs": 0.035,
+      "unthrottled": {
+        "frames": 85,
+        "avgMs": 47.940000000026295,
+        "p95Ms": 131.9
+      },
+      "throttled4x": {
+        "frames": 83,
+        "avgMs": 48.70722891556391,
+        "p95Ms": 125.7
+      }
+    },
+    "programsBefore": 9,
+    "programsAfter": 9,
+    "idleRendersPerSecond": 0,
+    "longtasks": [
+      57
+    ],
+    "shots": [
+      {
+        "p": 0.3,
+        "file": "C:\\Users\\DK\\Desktop\\interior design\\qa\\desktop8\\qa_p030.png",
+        "inside": false,
+        "fov": 32
+      },
+      {
+        "p": 0.34,
+        "file": "C:\\Users\\DK\\Desktop\\interior design\\qa\\desktop8\\qa_p034.png",
+        "inside": false,
+        "fov": 32
+      },
+      {
+        "p": 0.38,
+        "file": "C:\\Users\\DK\\Desktop\\interior design\\qa\\desktop8\\qa_p038.png",
+        "inside": false,
+        "fov": 32
+      },
+      {
+        "p": 0.44,
+        "file": "C:\\Users\\DK\\Desktop\\interior design\\qa\\desktop8\\qa_p044.png",
+        "inside": false,
+        "fov": 32.7
+      },
+      {
+        "p": 0.52,
+        "file": "C:\\Users\\DK\\Desktop\\interior design\\qa\\desktop8\\qa_p052.png",
+        "inside": false,
+        "fov": 34
+      },
+      {
+        "p": 0.56,
+        "file": "C:\\Users\\DK\\Desktop\\interior design\\qa\\desktop8\\qa_p056.png",
+        "inside": false,
+        "fov": 34
+      },
+      {
+        "p": 0.6,
+        "file": "C:\\Users\\DK\\Desktop\\interior design\\qa\\desktop8\\qa_p060.png",
+        "inside": false,
+        "fov": 38.6
+      },
+      {
+        "p": 0.64,
+        "file": "C:\\Users\\DK\\Desktop\\interior design\\qa\\desktop8\\qa_p064.png",
+        "inside": true,
+        "fov": 54.3
+      },
+      {
+        "p": 0.66,
+        "file": "C:\\Users\\DK\\Desktop\\interior design\\qa\\desktop8\\qa_p066.png",
+        "inside": true,
+        "fov": 56
+      },
+      {
+        "p": 0.8,
+        "file": "C:\\Users\\DK\\Desktop\\interior design\\qa\\desktop8\\qa_p080.png",
+        "inside": true,
+        "fov": 56
+      },
+      {
+        "p": 0.93,
+        "file": "C:\\Users\\DK\\Desktop\\interior design\\qa\\desktop8\\qa_p093.png",
+        "inside": true,
+        "fov": 45
+      }
+    ]
+  },
+  "mobile": {
+    "loaded": true,
+    "planFit": {
+      "dist": 15.799,
+      "height": 35.484,
+      "numericTX": 0,
+      "numericTY": 0,
+      "lensY": 0.0516,
+      "widthFrac": 174,
+      "heightFrac": 82.6,
+      "leftPct": 6.5,
+      "rightPct": 93.5,
+      "topPct": 29.8,
+      "bottomPct": 71.1,
+      "axis": "width",
+      "corners": [
+        [
+          -4.19,
+          0,
+          -4.88
+        ],
+        [
+          4.19,
+          0,
+          -4.88
+        ],
+        [
+          -4.19,
+          0.55,
+          -4.88
+        ],
+        [
+          4.19,
+          0.55,
+          -4.88
+        ],
+        [
+          -4.19,
+          0,
+          4.88
+        ],
+        [
+          4.19,
+          0,
+          4.88
+        ],
+        [
+          -4.19,
+          0.55,
+          4.88
+        ],
+        [
+          4.19,
+          0.55,
+          4.88
+        ]
+      ],
+      "cornerNdc": [
+        [
+          -0.775,
+          0.381,
+          0.998
+        ],
+        [
+          0.775,
+          0.381,
+          0.998
+        ],
+        [
+          -0.784,
+          0.405,
+          0.998
+        ],
+        [
+          0.784,
+          0.405,
+          0.998
+        ],
+        [
+          -0.858,
+          -0.422,
+          0.998
+        ],
+        [
+          0.858,
+          -0.422,
+          0.998
+        ],
+        [
+          -0.87,
+          -0.406,
+          0.998
+        ],
+        [
+          0.87,
+          -0.406,
+          0.998
+        ]
+      ]
+    },
+    "planRects": [
+      {
+        "p": 0.3,
+        "proj": {
+          "widthPct": 87,
+          "heightPct": 41.3,
+          "centerY": -0.8,
+          "centerX": 0,
+          "leftPct": 6.5,
+          "rightPct": 93.5,
+          "topPct": 29.8,
+          "bottomPct": 71.1,
+          "poly": [
+            {
+              "x": -0.869999999999996,
+              "y": -0.40589857682159736
+            },
+            {
+              "x": -0.8581403048100721,
+              "y": -0.42153154133420695
+            },
+            {
+              "x": 0.8581403048100801,
+              "y": -0.4215315413342066
+            },
+            {
+              "x": 0.870000000000004,
+              "y": -0.40589857682159697
+            },
+            {
+              "x": 0.7844063225941058,
+              "y": 0.4046597414142203
+            },
+            {
+              "x": -0.7844063225941005,
+              "y": 0.40465974141421995
+            }
+          ],
+          "behind": false
+        }
+      },
+      {
+        "p": 0.34,
+        "proj": {
+          "widthPct": 87,
+          "heightPct": 41.3,
+          "centerY": 9.5,
+          "centerX": 0,
+          "leftPct": 6.5,
+          "rightPct": 93.5,
+          "topPct": 24.6,
+          "bottomPct": 65.9,
+          "poly": [
+            {
+              "x": -0.87,
+              "y": -0.30269857682159496
+            },
+            {
+              "x": -0.8581403048100762,
+              "y": -0.3183315413342047
+            },
+            {
+              "x": 0.8581403048100762,
+              "y": -0.3183315413342047
+            },
+            {
+              "x": 0.87,
+              "y": -0.30269857682159496
+            },
+            {
+              "x": 0.7844063225941029,
+              "y": 0.5078597414142217
+            },
+            {
+              "x": -0.7844063225941029,
+              "y": 0.5078597414142217
+            }
+          ],
+          "behind": false
+        }
+      },
+      {
+        "p": 0.38,
+        "proj": {
+          "widthPct": 86.8,
+          "heightPct": 41.1,
+          "centerY": 11.5,
+          "centerX": 0,
+          "leftPct": 6.6,
+          "rightPct": 93.4,
+          "topPct": 23.7,
+          "bottomPct": 64.8,
+          "poly": [
+            {
+              "x": -0.8675734907178855,
+              "y": -0.2797199253311652
+            },
+            {
+              "x": -0.8557794103963771,
+              "y": -0.29562226018892046
+            },
+            {
+              "x": 0.8557794103963771,
+              "y": -0.29562226018892046
+            },
+            {
+              "x": 0.8675734907178855,
+              "y": -0.2797199253311652
+            },
+            {
+              "x": 0.782433242069289,
+              "y": 0.5265444957139216
+            },
+            {
+              "x": -0.782433242069289,
+              "y": 0.5265444957139216
+            }
+          ],
+          "behind": false
+        }
+      }
+    ],
+    "labels": {
+      "p": 0.34,
+      "footprint": {
+        "leftPct": 6.5,
+        "rightPct": 93.5,
+        "topPct": 24.6,
+        "bottomPct": 65.9
+      },
+      "rows": [
+        {
+          "zone": "LAPTOPS + DISPLAYS",
+          "anchorScreenPct": {
+            "x": 50,
+            "y": 43
+          },
+          "anchorInsideFootprint": true,
+          "labelRectPx": {
+            "left": 133.5,
+            "right": 256.5,
+            "top": 351.2,
+            "bottom": 374.2
+          },
+          "labelInsidePct": 100
+        },
+        {
+          "zone": "COMPONENTS + GRAPHICS",
+          "anchorScreenPct": {
+            "x": 43.2,
+            "y": 52.2
+          },
+          "anchorInsideFootprint": true,
+          "labelRectPx": {
+            "left": 90.4,
+            "right": 246.4,
+            "top": 429.1,
+            "bottom": 452.1
+          },
+          "labelInsidePct": 100
+        },
+        {
+          "zone": "SERVICE + CONSULTATION",
+          "anchorScreenPct": {
+            "x": 55.5,
+            "y": 52.4
+          },
+          "anchorInsideFootprint": true,
+          "labelRectPx": {
+            "left": 140.5,
+            "right": 292.5,
+            "top": 465.6,
+            "bottom": 488.6
+          },
+          "labelInsidePct": 100
+        }
+      ],
+      "minLabelSeparationPx": 13.5,
+      "fits": true
+    },
+    "fixC": {
+      "rows": [
+        {
+          "p": 0.44,
+          "s": -0.187,
+          "yawDeg": 0,
+          "pitchDeg": -41.72,
+          "facadeScreenXPct": 44.5,
+          "doorScreenXPct": 116.1
+        },
+        {
+          "p": 0.48,
+          "s": -0.434,
+          "yawDeg": 0,
+          "pitchDeg": -9.55,
+          "facadeScreenXPct": 47.2,
+          "doorScreenXPct": 206.4
+        },
+        {
+          "p": 0.52,
+          "s": -0.507,
+          "yawDeg": 0,
+          "pitchDeg": 0,
+          "facadeScreenXPct": 50,
+          "doorScreenXPct": 226.5
+        },
+        {
+          "p": 0.56,
+          "s": 1.58,
+          "yawDeg": 0,
+          "pitchDeg": 0,
+          "facadeScreenXPct": -37.7,
+          "doorScreenXPct": 137.7
+        },
+        {
+          "p": 0.6,
+          "s": 3.667,
+          "yawDeg": 0,
+          "pitchDeg": 0,
+          "facadeScreenXPct": -175,
+          "doorScreenXPct": 50
+        },
+        {
+          "p": 0.64,
+          "s": 3.667,
+          "yawDeg": 0,
+          "pitchDeg": 0,
+          "facadeScreenXPct": 3223.3,
+          "doorScreenXPct": 50
+        },
+        {
+          "p": 0.66,
+          "s": 3.491,
+          "yawDeg": 0,
+          "pitchDeg": 0,
+          "facadeScreenXPct": 1081.5,
+          "doorScreenXPct": 4.6
+        },
+        {
+          "p": 0.7,
+          "s": 3.347,
+          "yawDeg": -35.57,
+          "pitchDeg": -1.47,
+          "facadeScreenXPct": -1076.7,
+          "doorScreenXPct": 176.8
+        },
+        {
+          "p": 0.8,
+          "s": 2.547,
+          "yawDeg": -22.42,
+          "pitchDeg": -3.5,
+          "facadeScreenXPct": 1225.8,
+          "doorScreenXPct": 28.1
+        },
+        {
+          "p": 0.9,
+          "s": 1.747,
+          "yawDeg": 0,
+          "pitchDeg": 0,
+          "facadeScreenXPct": 254.8,
+          "doorScreenXPct": -124.5
+        },
+        {
+          "p": 0.93,
+          "s": 3.599,
+          "yawDeg": 0,
+          "pitchDeg": 0,
+          "facadeScreenXPct": 1222.7,
+          "doorScreenXPct": 30.5
+        },
+        {
+          "p": 0.96,
+          "s": -0.507,
+          "yawDeg": 0,
+          "pitchDeg": 0,
+          "facadeScreenXPct": 50,
+          "doorScreenXPct": 167.3
+        }
+      ],
+      "maxLateralStepPer001P": 1.369
+    },
+    "shots": [
+      {
+        "p": 0.34,
+        "file": "C:\\Users\\DK\\Desktop\\interior design\\qa\\mobile8\\qa_p034.png",
+        "inside": false,
+        "fov": 32
+      },
+      {
+        "p": 0.52,
+        "file": "C:\\Users\\DK\\Desktop\\interior design\\qa\\mobile8\\qa_p052.png",
+        "inside": false,
+        "fov": 34
+      },
+      {
+        "p": 0.6,
+        "file": "C:\\Users\\DK\\Desktop\\interior design\\qa\\mobile8\\qa_p060.png",
+        "inside": false,
+        "fov": 38.6
+      }
+    ]
+  }
+}

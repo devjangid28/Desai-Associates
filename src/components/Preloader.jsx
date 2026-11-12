@@ -142,12 +142,16 @@ export default function Preloader({
     gsap.set(imgWrap, { clipPath: 'inset(50% 0% 50% 0%)' })
     gsap.set(img, { scale: 1.2, translateZ: 10 })
 
-    const flipTo = (cellPrefix, logoCell, withScale) => {
-      const state = Flip.getState([...words, logoCtn])
+    const flipTo = (cellPrefix, logoCell, withScale, moveLogo = true) => {
+      const targets = [...words]
+      if (moveLogo) targets.push(logoCtn)
+      const state = Flip.getState(targets)
       words.forEach((w, i) => {
         root.querySelector(`.preloader__title-${cellPrefix}_c${i + 1}`).appendChild(w)
       })
-      root.querySelector(`.preloader__logo_${logoCell}`).appendChild(logoCtn)
+      if (moveLogo) {
+        root.querySelector(`.preloader__logo_${logoCell}`).appendChild(logoCtn)
+      }
       Flip.from(state, {
         duration: DUR_L,
         ease: 'InOut',
@@ -174,7 +178,7 @@ export default function Preloader({
         '<',
       )
       .to({}, { duration: DUR_S })
-      .add(() => flipTo('p2', 'p2', false))
+      .add(() => flipTo('p2', 'p2', false, false))
       .to(imgWrap, { clipPath: 'inset(50% 0% 50% 0%)', duration: DUR_L - 0.4, ease: 'InOut' }, '<')
       .to(img, { scale: 1.2, translateZ: 10, duration: DUR_L - 0.4, ease: 'InOut' }, '<')
 
@@ -241,10 +245,18 @@ export default function Preloader({
       <div className="preloader__c">
         <div className="preloader__t" />
 
+        <div className="grid preloader__logo-row">
+          <div className="preloader__logo_p2" />
+          <div className="preloader__logo_p3" />
+        </div>
+
         <div className="preloader__c_c h1">
           <div className="preloader__u" />
           <div className="preloader__cell is-top">
             <div className="grid"><span className="preloader__title-p3_c4" /></div>
+          </div>
+          <div className="preloader__cell">
+            <div className="grid"><span className="preloader__title-p3_c1" /></div>
           </div>
           <div className="preloader__cell">
             <div className="grid">
@@ -259,15 +271,13 @@ export default function Preloader({
                   {logo}
                 </div>
               </div>
-              <div className="preloader__logo_p2" />
-              <div className="preloader__logo_p3" />
 
               <span className="preloader__title-p2_c1" />
               <span className="preloader__title-p2_c2" />
               <span className="preloader__title-p2_c3" />
               <span className="preloader__title-p2_c4" />
 
-              <span className="preloader__title-p3_c1" />
+              <span className="preloader__title-p3_c2" />
 
               <div className="preloader__img-w">
                 <div className="preloader__img">
@@ -279,9 +289,7 @@ export default function Preloader({
             </div>
           </div>
 
-          <div className="preloader__cell">
-            <div className="grid"><span className="preloader__title-p3_c2" /></div>
-          </div>
+          <div className="preloader__cell" />
           <div className="preloader__cell is-bot">
             <div className="grid"><span className="preloader__title-p3_c3" /></div>
           </div>

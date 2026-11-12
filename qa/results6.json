@@ -1,0 +1,671 @@
+{
+  "fx0": {
+    "loaded": true,
+    "perf": {
+      "unthrottled": {
+        "frames": 69,
+        "avgMs": 58.614492753493614,
+        "p95Ms": 190.6
+      },
+      "throttled4x": {
+        "frames": 68,
+        "avgMs": 60.18088235295213,
+        "p95Ms": 185.6
+      }
+    },
+    "programsBefore": 8,
+    "programsAfter": 8,
+    "idleRendersPerSecond": 0,
+    "longtasks": [
+      137,
+      52,
+      53,
+      53,
+      51,
+      64,
+      122,
+      119,
+      118,
+      119,
+      151,
+      56,
+      50,
+      50,
+      53,
+      53,
+      53,
+      56,
+      55,
+      57,
+      55,
+      56,
+      56,
+      56,
+      57,
+      57,
+      56,
+      55,
+      55,
+      55,
+      55,
+      56,
+      56,
+      56,
+      54,
+      57,
+      57,
+      55,
+      57,
+      54,
+      57
+    ]
+  },
+  "fx1": {
+    "loaded": true,
+    "perf": {
+      "unthrottled": {
+        "frames": 62,
+        "avgMs": 68.06935483860153,
+        "p95Ms": 231.3
+      },
+      "throttled4x": {
+        "frames": 61,
+        "avgMs": 68.88196721312697,
+        "p95Ms": 186.1
+      }
+    },
+    "programsBefore": 8,
+    "programsAfter": 8,
+    "idleRendersPerSecond": 0,
+    "longtasks": [
+      132,
+      58,
+      144,
+      102,
+      120,
+      125,
+      98,
+      127,
+      101,
+      119,
+      129,
+      107,
+      98,
+      119,
+      101,
+      110,
+      139,
+      100,
+      119,
+      129,
+      100,
+      55,
+      55,
+      85
+    ]
+  },
+  "fx2": {
+    "loaded": true,
+    "perf": {
+      "unthrottled": {
+        "frames": 62,
+        "avgMs": 68.15645161283112,
+        "p95Ms": 243.7
+      },
+      "throttled4x": {
+        "frames": 62,
+        "avgMs": 64.58387096760974,
+        "p95Ms": 171.1
+      }
+    },
+    "programsBefore": 9,
+    "programsAfter": 9,
+    "idleRendersPerSecond": 0,
+    "longtasks": [
+      136,
+      51,
+      129,
+      109,
+      100,
+      118,
+      109,
+      128,
+      110,
+      130,
+      108,
+      128,
+      137,
+      99,
+      117,
+      121,
+      121,
+      127,
+      137,
+      53,
+      51,
+      50
+    ],
+    "reveal": [
+      {
+        "p": 0,
+        "normal": [
+          0,
+          -1,
+          0
+        ],
+        "constant": -0.33,
+        "keptSide": "y <= plane height (above clipped)",
+        "planeWorldY": -0.33,
+        "camera": {
+          "x": -12.338303549289702,
+          "y": 5.047487815618515,
+          "z": -21.370568626577178
+        },
+        "distToCentre": 25.188
+      },
+      {
+        "p": 0.03,
+        "normal": [
+          0,
+          -1,
+          0
+        ],
+        "constant": 0.372,
+        "keptSide": "y <= plane height (above clipped)",
+        "planeWorldY": 0.372,
+        "camera": {
+          "x": -12.666908455176987,
+          "y": 5.000405624745804,
+          "z": -21.040177733033843
+        },
+        "distToCentre": 25.063
+      },
+      {
+        "p": 0.06,
+        "normal": [
+          0,
+          -1,
+          0
+        ],
+        "constant": 2.3128,
+        "keptSide": "y <= plane height (above clipped)",
+        "planeWorldY": 2.3128,
+        "camera": {
+          "x": -13.533869553129078,
+          "y": 4.870237214685957,
+          "z": -20.10213811333548
+        },
+        "distToCentre": 24.718
+      },
+      {
+        "p": 0.09,
+        "normal": [
+          0,
+          -1,
+          0
+        ],
+        "constant": 3.0148,
+        "keptSide": "y <= plane height (above clipped)",
+        "planeWorldY": 3.0148,
+        "camera": {
+          "x": -13.832240352637234,
+          "y": 4.823155023813247,
+          "z": -19.754486488396715
+        },
+        "distToCentre": 24.593
+      }
+    ],
+    "bboxWidth": [
+      {
+        "p": 0,
+        "widthPct": 52
+      },
+      {
+        "p": 0.05,
+        "widthPct": 53.5
+      },
+      {
+        "p": 0.09,
+        "widthPct": 54.5
+      },
+      {
+        "p": 0.14,
+        "widthPct": 62.7
+      },
+      {
+        "p": 0.18,
+        "widthPct": 59.6
+      },
+      {
+        "p": 0.4,
+        "widthPct": 59.8
+      }
+    ],
+    "dollhouse": [
+      {
+        "p": 0.18,
+        "camera": {
+          "x": 0,
+          "y": 2.6919935016632075,
+          "z": 19.62911928296089
+        },
+        "pitchDeg": 0,
+        "roofPlaneHeight": 3.015,
+        "propsFullyRisen": 0,
+        "propsTotal": 72,
+        "bboxWidthPct": null
+      },
+      {
+        "p": 0.22,
+        "camera": {
+          "x": -2.504471564914519,
+          "y": 10.647810844347664,
+          "z": 5.595566815572977
+        },
+        "pitchDeg": -52.38,
+        "roofPlaneHeight": 2.457,
+        "propsFullyRisen": 0,
+        "propsTotal": 72,
+        "bboxWidthPct": null
+      },
+      {
+        "p": 0.26,
+        "camera": {
+          "x": -2.499201298010158,
+          "y": 10.655807610750196,
+          "z": 5.585088878583227
+        },
+        "pitchDeg": -52.46,
+        "roofPlaneHeight": 1.9,
+        "propsFullyRisen": 0,
+        "propsTotal": 72,
+        "bboxWidthPct": null
+      },
+      {
+        "p": 0.3,
+        "camera": {
+          "x": -4.64062539136404,
+          "y": 7.726060324709578,
+          "z": 9.620622012616154
+        },
+        "pitchDeg": -25.23,
+        "roofPlaneHeight": 1.9,
+        "propsFullyRisen": 0,
+        "propsTotal": 72,
+        "bboxWidthPct": null
+      },
+      {
+        "p": 0.32,
+        "camera": {
+          "x": -9.215313305882313,
+          "y": 2.6919935016632075,
+          "z": 17.331483620831065
+        },
+        "pitchDeg": 0,
+        "roofPlaneHeight": 1.9,
+        "propsFullyRisen": 72,
+        "propsTotal": 72,
+        "bboxWidthPct": null
+      }
+    ],
+    "depth": {
+      "rows": [
+        {
+          "p": 0.52,
+          "depthPct": -42,
+          "z": 8.973
+        },
+        {
+          "p": 0.53,
+          "depthPct": 13.15,
+          "z": 3.594
+        },
+        {
+          "p": 0.54,
+          "depthPct": 14.78,
+          "z": 3.435
+        },
+        {
+          "p": 0.55,
+          "depthPct": 15.47,
+          "z": 3.368
+        },
+        {
+          "p": 0.56,
+          "depthPct": 16.52,
+          "z": 3.265
+        },
+        {
+          "p": 0.57,
+          "depthPct": 17.58,
+          "z": 3.162
+        },
+        {
+          "p": 0.58,
+          "depthPct": 18.63,
+          "z": 3.06
+        },
+        {
+          "p": 0.59,
+          "depthPct": 19.69,
+          "z": 2.957
+        },
+        {
+          "p": 0.6,
+          "depthPct": 20.74,
+          "z": 2.854
+        },
+        {
+          "p": 0.61,
+          "depthPct": 21.8,
+          "z": 2.751
+        },
+        {
+          "p": 0.62,
+          "depthPct": 22.85,
+          "z": 2.648
+        },
+        {
+          "p": 0.63,
+          "depthPct": 23.91,
+          "z": 2.545
+        },
+        {
+          "p": 0.64,
+          "depthPct": 24.96,
+          "z": 2.442
+        },
+        {
+          "p": 0.65,
+          "depthPct": 26.01,
+          "z": 2.339
+        },
+        {
+          "p": 0.66,
+          "depthPct": 27.07,
+          "z": 2.237
+        },
+        {
+          "p": 0.67,
+          "depthPct": 28.12,
+          "z": 2.134
+        },
+        {
+          "p": 0.68,
+          "depthPct": 29.18,
+          "z": 2.031
+        },
+        {
+          "p": 0.69,
+          "depthPct": 30.23,
+          "z": 1.928
+        },
+        {
+          "p": 0.7,
+          "depthPct": 31.29,
+          "z": 1.825
+        },
+        {
+          "p": 0.71,
+          "depthPct": 32.34,
+          "z": 1.722
+        },
+        {
+          "p": 0.72,
+          "depthPct": 33.4,
+          "z": 1.619
+        },
+        {
+          "p": 0.73,
+          "depthPct": 34.45,
+          "z": 1.516
+        },
+        {
+          "p": 0.74,
+          "depthPct": 35.51,
+          "z": 1.414
+        },
+        {
+          "p": 0.75,
+          "depthPct": 36.56,
+          "z": 1.311
+        },
+        {
+          "p": 0.76,
+          "depthPct": 37.62,
+          "z": 1.208
+        },
+        {
+          "p": 0.77,
+          "depthPct": 38.67,
+          "z": 1.105
+        },
+        {
+          "p": 0.78,
+          "depthPct": 39.73,
+          "z": 1.002
+        },
+        {
+          "p": 0.79,
+          "depthPct": 40.78,
+          "z": 0.899
+        },
+        {
+          "p": 0.8,
+          "depthPct": 41.84,
+          "z": 0.796
+        },
+        {
+          "p": 0.81,
+          "depthPct": 42.52,
+          "z": 0.729
+        },
+        {
+          "p": 0.82,
+          "depthPct": 44.16,
+          "z": 0.57
+        },
+        {
+          "p": 0.83,
+          "depthPct": 45,
+          "z": 0.488
+        }
+      ],
+      "maxDepth": 45
+    },
+    "layering": {
+      "typeZIndex": "0",
+      "canvasZIndex": "1",
+      "elementFromPointTag": "DIV",
+      "elementFromPointCls": "hero__content",
+      "elementFromPointIsCanvas": false,
+      "canvasAlpha": true,
+      "sceneBackgroundNull": true,
+      "preloaderHidden": true
+    },
+    "shots": [
+      {
+        "p": 0,
+        "file": "C:\\Users\\DK\\Desktop\\interior design\\qa\\qa6\\qa_p000.png",
+        "inside": false,
+        "fov": 30,
+        "over245": 0
+      },
+      {
+        "p": 0.03,
+        "file": "C:\\Users\\DK\\Desktop\\interior design\\qa\\qa6\\qa_p003.png",
+        "inside": false,
+        "fov": 30,
+        "over245": 0
+      },
+      {
+        "p": 0.06,
+        "file": "C:\\Users\\DK\\Desktop\\interior design\\qa\\qa6\\qa_p006.png",
+        "inside": false,
+        "fov": 30,
+        "over245": 0
+      },
+      {
+        "p": 0.09,
+        "file": "C:\\Users\\DK\\Desktop\\interior design\\qa\\qa6\\qa_p009.png",
+        "inside": false,
+        "fov": 30,
+        "over245": 0
+      },
+      {
+        "p": 0.14,
+        "file": "C:\\Users\\DK\\Desktop\\interior design\\qa\\qa6\\qa_p014.png",
+        "inside": false,
+        "fov": 30,
+        "over245": 0
+      },
+      {
+        "p": 0.2,
+        "file": "C:\\Users\\DK\\Desktop\\interior design\\qa\\qa6\\qa_p020.png",
+        "inside": false,
+        "fov": 30.1,
+        "over245": 0.16
+      },
+      {
+        "p": 0.24,
+        "file": "C:\\Users\\DK\\Desktop\\interior design\\qa\\qa6\\qa_p024.png",
+        "inside": false,
+        "fov": 32.2,
+        "over245": 0
+      },
+      {
+        "p": 0.28,
+        "file": "C:\\Users\\DK\\Desktop\\interior design\\qa\\qa6\\qa_p028.png",
+        "inside": false,
+        "fov": 35.1,
+        "over245": 0
+      },
+      {
+        "p": 0.32,
+        "file": "C:\\Users\\DK\\Desktop\\interior design\\qa\\qa6\\qa_p032.png",
+        "inside": false,
+        "fov": 36,
+        "over245": 0
+      },
+      {
+        "p": 0.36,
+        "file": "C:\\Users\\DK\\Desktop\\interior design\\qa\\qa6\\qa_p036.png",
+        "inside": false,
+        "fov": 31.3,
+        "over245": 0.03
+      },
+      {
+        "p": 0.42,
+        "file": "C:\\Users\\DK\\Desktop\\interior design\\qa\\qa6\\qa_p042.png",
+        "inside": false,
+        "fov": 30,
+        "over245": 0
+      },
+      {
+        "p": 0.5,
+        "file": "C:\\Users\\DK\\Desktop\\interior design\\qa\\qa6\\qa_p050.png",
+        "inside": false,
+        "fov": 54,
+        "over245": 0
+      },
+      {
+        "p": 0.56,
+        "file": "C:\\Users\\DK\\Desktop\\interior design\\qa\\qa6\\qa_p056.png",
+        "inside": true,
+        "fov": 56,
+        "over245": 0
+      },
+      {
+        "p": 0.62,
+        "file": "C:\\Users\\DK\\Desktop\\interior design\\qa\\qa6\\qa_p062.png",
+        "inside": true,
+        "fov": 56,
+        "over245": 0
+      },
+      {
+        "p": 0.68,
+        "file": "C:\\Users\\DK\\Desktop\\interior design\\qa\\qa6\\qa_p068.png",
+        "inside": true,
+        "fov": 56,
+        "over245": 0
+      },
+      {
+        "p": 0.74,
+        "file": "C:\\Users\\DK\\Desktop\\interior design\\qa\\qa6\\qa_p074.png",
+        "inside": true,
+        "fov": 56,
+        "over245": 0
+      },
+      {
+        "p": 0.8,
+        "file": "C:\\Users\\DK\\Desktop\\interior design\\qa\\qa6\\qa_p080.png",
+        "inside": true,
+        "fov": 56,
+        "over245": 0
+      },
+      {
+        "p": 0.88,
+        "file": "C:\\Users\\DK\\Desktop\\interior design\\qa\\qa6\\qa_p088.png",
+        "inside": false,
+        "fov": 42.7,
+        "over245": 0
+      },
+      {
+        "p": 0.95,
+        "file": "C:\\Users\\DK\\Desktop\\interior design\\qa\\qa6\\qa_p095.png",
+        "inside": false,
+        "fov": 34,
+        "over245": 0
+      },
+      {
+        "p": 1,
+        "file": "C:\\Users\\DK\\Desktop\\interior design\\qa\\qa6\\qa_p100.png",
+        "inside": false,
+        "fov": 34,
+        "over245": 0
+      }
+    ]
+  },
+  "mobile": {
+    "bboxWidth": [
+      {
+        "p": 0.06,
+        "widthPct": 72.1
+      },
+      {
+        "p": 0.09,
+        "widthPct": 72.8
+      }
+    ],
+    "shots": [
+      {
+        "p": 0.06,
+        "file": "C:\\Users\\DK\\Desktop\\interior design\\qa\\qa6-mobile\\qa_p006.png",
+        "inside": false,
+        "fov": 30,
+        "over245": 0
+      },
+      {
+        "p": 0.24,
+        "file": "C:\\Users\\DK\\Desktop\\interior design\\qa\\qa6-mobile\\qa_p024.png",
+        "inside": false,
+        "fov": 32.2,
+        "over245": 0
+      },
+      {
+        "p": 0.56,
+        "file": "C:\\Users\\DK\\Desktop\\interior design\\qa\\qa6-mobile\\qa_p056.png",
+        "inside": true,
+        "fov": 56,
+        "over245": 0
+      },
+      {
+        "p": 0.74,
+        "file": "C:\\Users\\DK\\Desktop\\interior design\\qa\\qa6-mobile\\qa_p074.png",
+        "inside": true,
+        "fov": 56,
+        "over245": 0
+      }
+    ]
+  }
+}

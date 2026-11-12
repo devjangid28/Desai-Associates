@@ -32,6 +32,8 @@
   font-display: swap;
 }
 
+
+
 :root {
   /* scale: html font-size = 1vw (desktop ratio 16, mobile ratio 4.48) */
   --scale: 16;

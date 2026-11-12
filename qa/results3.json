@@ -1,0 +1,409 @@
+{
+  "table": [
+    {
+      "p": 0,
+      "camera": {
+        "x": -11.1888698504649,
+        "y": 4.876799821853638,
+        "z": -15.979362174638396
+      },
+      "inside": false,
+      "fov": 38,
+      "centerProj": {
+        "x": 1.409392000205601e-19,
+        "y": -0.019965025641264803,
+        "behind": false
+      },
+      "centerRGB": [
+        114,
+        113,
+        113
+      ],
+      "over245Percent": 0,
+      "calls": 82,
+      "triangles": 312658
+    },
+    {
+      "p": 0.24,
+      "camera": {
+        "x": -7.419688788848894,
+        "y": 2.9260798931121825,
+        "z": 15.911573955713639
+      },
+      "inside": false,
+      "fov": 38,
+      "centerProj": {
+        "x": -8.375747072815515e-17,
+        "y": -0.041305900375437375,
+        "behind": false
+      },
+      "centerRGB": [
+        67,
+        65,
+        58
+      ],
+      "over245Percent": 0,
+      "calls": 82,
+      "triangles": 312658
+    },
+    {
+      "p": 0.34,
+      "camera": {
+        "x": 0,
+        "y": 1.950719928741455,
+        "z": 19.50719928741455
+      },
+      "inside": false,
+      "fov": 38,
+      "centerProj": {
+        "x": 0,
+        "y": -0.03778930676538128,
+        "behind": false
+      },
+      "centerRGB": [
+        77,
+        70,
+        61
+      ],
+      "over245Percent": 0,
+      "calls": 82,
+      "triangles": 312658
+    },
+    {
+      "p": 0.46,
+      "camera": {
+        "x": -0.5063531398773192,
+        "y": 1.6,
+        "z": 8.778239679336547
+      },
+      "inside": false,
+      "fov": 58,
+      "centerProj": {
+        "x": 0.0580694160462685,
+        "y": -0.2341528080898967,
+        "behind": false
+      },
+      "centerRGB": [
+        172,
+        163,
+        150
+      ],
+      "over245Percent": 0,
+      "calls": 82,
+      "triangles": 312658
+    },
+    {
+      "p": 0.58,
+      "camera": {
+        "x": -0.5063531398773192,
+        "y": 1.55,
+        "z": 3.3767998218536377
+      },
+      "inside": true,
+      "fov": 58,
+      "centerProj": {
+        "x": 0.1573182566449251,
+        "y": 0.9782905189780473,
+        "behind": true
+      },
+      "centerRGB": [
+        117,
+        116,
+        114
+      ],
+      "over245Percent": 0,
+      "calls": 32,
+      "triangles": 271189
+    },
+    {
+      "p": 0.7,
+      "camera": {
+        "x": 0.027090578830786905,
+        "y": 1.55,
+        "z": 0.7390604868087767
+      },
+      "inside": true,
+      "fov": 58,
+      "centerProj": {
+        "x": 0.11167496009930634,
+        "y": -2.9100299161960477,
+        "behind": false
+      },
+      "centerRGB": [
+        76,
+        72,
+        66
+      ],
+      "over245Percent": 0,
+      "calls": 42,
+      "triangles": 305994
+    },
+    {
+      "p": 0.78,
+      "camera": {
+        "x": -0.021425254029588423,
+        "y": 1.55,
+        "z": -0.4876799821853641
+      },
+      "inside": true,
+      "fov": 58,
+      "centerProj": {
+        "x": -5.0837502518168165,
+        "y": 31.63128443091841,
+        "behind": true
+      },
+      "centerRGB": [
+        174,
+        165,
+        151
+      ],
+      "over245Percent": 0,
+      "calls": 23,
+      "triangles": 273893
+    },
+    {
+      "p": 0.9,
+      "camera": {
+        "x": -1.1102230246251565e-16,
+        "y": 2.438399910926819,
+        "z": 15.60575942993164
+      },
+      "inside": false,
+      "fov": 58,
+      "centerProj": {
+        "x": -4.2802124989264386e-17,
+        "y": -0.028964634878164527,
+        "behind": false
+      },
+      "centerRGB": [
+        77,
+        70,
+        61
+      ],
+      "over245Percent": 0,
+      "calls": 82,
+      "triangles": 312658
+    },
+    {
+      "p": 1,
+      "camera": {
+        "x": 0,
+        "y": 2.438399910926819,
+        "z": 16.093439412117004
+      },
+      "inside": false,
+      "fov": 38,
+      "centerProj": {
+        "x": 0,
+        "y": -0.04527295788815355,
+        "behind": false
+      },
+      "centerRGB": [
+        77,
+        70,
+        61
+      ],
+      "over245Percent": 0,
+      "calls": 82,
+      "triangles": 312658
+    }
+  ],
+  "screenshots": [
+    "C:\\Users\\DK\\Desktop\\interior design\\qa\\qa_p000.png",
+    "C:\\Users\\DK\\Desktop\\interior design\\qa\\qa_p012.png",
+    "C:\\Users\\DK\\Desktop\\interior design\\qa\\qa_p024.png",
+    "C:\\Users\\DK\\Desktop\\interior design\\qa\\qa_p034.png",
+    "C:\\Users\\DK\\Desktop\\interior design\\qa\\qa_p046.png",
+    "C:\\Users\\DK\\Desktop\\interior design\\qa\\qa_p058.png",
+    "C:\\Users\\DK\\Desktop\\interior design\\qa\\qa_p068.png",
+    "C:\\Users\\DK\\Desktop\\interior design\\qa\\qa_p078.png",
+    "C:\\Users\\DK\\Desktop\\interior design\\qa\\qa_p084.png",
+    "C:\\Users\\DK\\Desktop\\interior design\\qa\\qa_p090.png",
+    "C:\\Users\\DK\\Desktop\\interior design\\qa\\qa_p100.png"
+  ],
+  "longtasks": [
+    73,
+    82,
+    89,
+    84,
+    69,
+    112,
+    67,
+    105,
+    73,
+    105,
+    114,
+    130,
+    55,
+    66,
+    51,
+    51,
+    50,
+    54,
+    67,
+    78,
+    74,
+    76,
+    79,
+    85,
+    81,
+    98,
+    106,
+    78,
+    92,
+    92,
+    91,
+    119,
+    64,
+    90,
+    100,
+    164,
+    210,
+    120,
+    218,
+    124,
+    207,
+    101,
+    139,
+    98,
+    168,
+    85,
+    144,
+    81,
+    145,
+    80,
+    184,
+    91,
+    141,
+    88,
+    149,
+    83,
+    131,
+    70,
+    138,
+    102,
+    164,
+    90,
+    175,
+    65,
+    137,
+    82,
+    168,
+    93,
+    170,
+    91,
+    170,
+    92,
+    165,
+    94,
+    126,
+    83,
+    89
+  ],
+  "loaded": true,
+  "model": {
+    "originalBox": {
+      "min": [
+        2.1054572732927275,
+        -0.12699379772516295,
+        -13.09447193145752
+      ],
+      "max": [
+        10.487415107917599,
+        2.7177936956343274,
+        -3.340872287750244
+      ]
+    },
+    "centeredBox": {
+      "min": [
+        -4.190978917312436,
+        -0.1299999999999999,
+        -4.876799821853638
+      ],
+      "max": [
+        4.190978917312436,
+        2.7147874933594904,
+        4.876799821853638
+      ]
+    },
+    "doorX": 0.43959011130005515,
+    "doorCandidates": [
+      0.43959011130005515
+    ],
+    "loadedBytes": 5766312
+  },
+  "info": {
+    "outside": {
+      "calls": 82,
+      "triangles": 312658,
+      "pixelRatio": 1,
+      "canvas": [
+        1920,
+        1080
+      ],
+      "mesh": {
+        "meshes": 73,
+        "triangles": 310548,
+        "glass": 1
+      }
+    },
+    "inside": {
+      "calls": 42,
+      "triangles": 305994,
+      "pixelRatio": 1,
+      "canvas": [
+        1920,
+        1080
+      ],
+      "mesh": {
+        "meshes": 73,
+        "triangles": 310548,
+        "glass": 1
+      }
+    }
+  },
+  "continuity": {
+    "maxInsideStep": 0.11401862007243474,
+    "maxInsideStepAt": 0.542,
+    "maxOutsideDeg": 1.8746528067131596,
+    "maxOutsideDegAt": 0.122,
+    "maxOutsidePos": {
+      "prev": [
+        -18.46132007950438,
+        3.9014398574829103,
+        1.6151562206801426
+      ],
+      "pos": [
+        -18.36834741311325,
+        3.870965502570193,
+        2.2145697088068443
+      ]
+    },
+    "maxSpeedDeltaPerP": 449.60522607921075,
+    "maxSpeedDeltaAt": 0.902,
+    "thresholds": {
+      "inside": 0.12,
+      "outsideDeg": 2
+    }
+  },
+  "perf": {
+    "unthrottled": {
+      "frames": 192,
+      "avgMs": 26.211458333333212,
+      "p95Ms": 69.5,
+      "maxMs": 112.59999999997672
+    },
+    "throttled4x": {
+      "frames": 195,
+      "avgMs": 25.817948717949612,
+      "p95Ms": 61.79999999998836,
+      "maxMs": 88.20000000001164
+    }
+  },
+  "idleRendersPerSecond": 0,
+  "preview": {
+    "glbStatus": 200,
+    "glbMagic": "glTF",
+    "glbBytes": 5766312
+  }
+}

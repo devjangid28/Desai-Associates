@@ -1,0 +1,1227 @@
+{
+  "desktop": {
+    "table": [
+      {
+        "p": 0,
+        "phase": "Rotate to the front",
+        "camera": {
+          "x": 2.030601479251249e-15,
+          "y": 3.413759875297546,
+          "z": -16.581119394302366
+        },
+        "distToCentre": 16.928888825150384,
+        "inside": false,
+        "nearestWall": 11.800820182171673,
+        "centerRGB": [
+          131,
+          131,
+          131
+        ],
+        "cornerA": [
+          9,
+          12,
+          16
+        ],
+        "cornerB": [
+          9,
+          12,
+          16
+        ],
+        "cornerC": [
+          9,
+          12,
+          16
+        ],
+        "cornerD": [
+          9,
+          12,
+          16
+        ],
+        "over245Percent": 0,
+        "biggestMesh": {
+          "fraction": 0.253032631141257,
+          "name": "mesh-0",
+          "material": "PaletteMaterial001"
+        },
+        "centerProj": {
+          "lookTarget": {
+            "x": 7.716681245099159e-32,
+            "y": -1.0205720560396942e-16,
+            "behind": false
+          },
+          "boxCentre": {
+            "x": 7.692498357975549e-32,
+            "y": -0.14448279429662664,
+            "behind": false
+          }
+        },
+        "pixelSize": [
+          1920,
+          1080
+        ],
+        "screenshot": "C:\\Users\\DK\\Desktop\\interior design\\qa\\qa_p000_desktop.png"
+      },
+      {
+        "p": 0.1,
+        "phase": "Rotate to the front",
+        "camera": {
+          "x": 15.332029044401823,
+          "y": 3.413759875297546,
+          "z": -6.313668169117617
+        },
+        "distToCentre": 16.928888825150384,
+        "inside": false,
+        "nearestWall": 17.244661144944363,
+        "centerRGB": [
+          115,
+          92,
+          68
+        ],
+        "cornerA": [
+          9,
+          12,
+          16
+        ],
+        "cornerB": [
+          9,
+          12,
+          16
+        ],
+        "cornerC": [
+          9,
+          12,
+          16
+        ],
+        "cornerD": [
+          9,
+          12,
+          16
+        ],
+        "over245Percent": 0,
+        "biggestMesh": {
+          "fraction": 0.253032631141257,
+          "name": "mesh-0",
+          "material": "PaletteMaterial001"
+        },
+        "centerProj": {
+          "lookTarget": {
+            "x": 4.045412085415155e-16,
+            "y": 5.1028602801984705e-17,
+            "behind": false
+          },
+          "boxCentre": {
+            "x": 4.006259914121952e-16,
+            "y": -0.1444827942966265,
+            "behind": false
+          }
+        },
+        "pixelSize": [
+          1920,
+          1080
+        ],
+        "screenshot": "C:\\Users\\DK\\Desktop\\interior design\\qa\\qa_p010_desktop.png"
+      },
+      {
+        "p": 0.22,
+        "phase": "Rotate to the front",
+        "camera": {
+          "x": 0,
+          "y": 3.413759875297546,
+          "z": 16.581119394302366
+        },
+        "distToCentre": 16.928888825150384,
+        "inside": false,
+        "nearestWall": 11.922464979367797,
+        "centerRGB": [
+          111,
+          106,
+          100
+        ],
+        "cornerA": [
+          9,
+          12,
+          16
+        ],
+        "cornerB": [
+          9,
+          12,
+          16
+        ],
+        "cornerC": [
+          9,
+          12,
+          16
+        ],
+        "cornerD": [
+          9,
+          12,
+          16
+        ],
+        "over245Percent": 0,
+        "biggestMesh": {
+          "fraction": 0.253032631141257,
+          "name": "mesh-0",
+          "material": "PaletteMaterial001"
+        },
+        "centerProj": {
+          "lookTarget": {
+            "x": 0,
+            "y": -2.5514301400992353e-17,
+            "behind": false
+          },
+          "boxCentre": {
+            "x": 0,
+            "y": -0.14448279429662655,
+            "behind": false
+          }
+        },
+        "pixelSize": [
+          1920,
+          1080
+        ],
+        "screenshot": "C:\\Users\\DK\\Desktop\\interior design\\qa\\qa_p022_desktop.png"
+      },
+      {
+        "p": 0.34,
+        "phase": "Step back",
+        "camera": {
+          "x": 0,
+          "y": 3.413759875297546,
+          "z": 20.48255925178528
+        },
+        "distToCentre": 20.76509065689544,
+        "inside": false,
+        "nearestWall": 15.811500957520309,
+        "centerRGB": [
+          110,
+          106,
+          99
+        ],
+        "cornerA": [
+          9,
+          12,
+          16
+        ],
+        "cornerB": [
+          9,
+          12,
+          16
+        ],
+        "cornerC": [
+          9,
+          12,
+          16
+        ],
+        "cornerD": [
+          9,
+          12,
+          16
+        ],
+        "over245Percent": 0,
+        "biggestMesh": {
+          "fraction": 0.16674514300428045,
+          "name": "mesh-0",
+          "material": "PaletteMaterial001"
+        },
+        "centerProj": {
+          "lookTarget": {
+            "x": 0,
+            "y": -2.071265687290618e-17,
+            "behind": false
+          },
+          "boxCentre": {
+            "x": 0,
+            "y": -0.11801203409776226,
+            "behind": false
+          }
+        },
+        "pixelSize": [
+          1920,
+          1080
+        ],
+        "screenshot": "C:\\Users\\DK\\Desktop\\interior design\\qa\\qa_p034_desktop.png"
+      },
+      {
+        "p": 0.48,
+        "phase": "Come closer",
+        "camera": {
+          "x": 0,
+          "y": 1.4,
+          "z": 11.704319572448732
+        },
+        "distToCentre": 11.787751976267845,
+        "inside": false,
+        "nearestWall": 6.948169803619385,
+        "centerRGB": [
+          117,
+          111,
+          103
+        ],
+        "cornerA": [
+          9,
+          12,
+          16
+        ],
+        "cornerB": [
+          9,
+          12,
+          16
+        ],
+        "cornerC": [
+          9,
+          12,
+          16
+        ],
+        "cornerD": [
+          9,
+          12,
+          16
+        ],
+        "over245Percent": 0,
+        "biggestMesh": {
+          "fraction": 0.5160910007611672,
+          "name": "mesh-0",
+          "material": "PaletteMaterial001"
+        },
+        "centerProj": {
+          "lookTarget": {
+            "x": 0,
+            "y": -0.019669773021487796,
+            "behind": false
+          },
+          "boxCentre": {
+            "x": 0,
+            "y": -0.22977627713534587,
+            "behind": false
+          }
+        },
+        "pixelSize": [
+          1920,
+          1080
+        ],
+        "screenshot": "C:\\Users\\DK\\Desktop\\interior design\\qa\\qa_p048_desktop.png"
+      },
+      {
+        "p": 0.62,
+        "phase": "Zoom inside",
+        "camera": {
+          "x": 0,
+          "y": 1.4530988064875645,
+          "z": 3.6767998218536397
+        },
+        "distToCentre": 3.953524133149884,
+        "inside": true,
+        "nearestWall": 1.13488325920936,
+        "centerRGB": [
+          140,
+          133,
+          124
+        ],
+        "cornerA": [
+          194,
+          190,
+          185
+        ],
+        "cornerB": [
+          100,
+          117,
+          124
+        ],
+        "cornerC": [
+          98,
+          96,
+          93
+        ],
+        "cornerD": [
+          98,
+          96,
+          93
+        ],
+        "over245Percent": 0.6666666666666667,
+        "biggestMesh": {
+          "fraction": 1,
+          "name": "mesh-0",
+          "material": "PaletteMaterial001"
+        },
+        "centerProj": {
+          "lookTarget": {
+            "x": 0,
+            "y": -0.06238230454577741,
+            "behind": false
+          },
+          "boxCentre": {
+            "x": 0,
+            "y": -0.7270767752134847,
+            "behind": false
+          }
+        },
+        "pixelSize": [
+          1920,
+          1080
+        ],
+        "screenshot": "C:\\Users\\DK\\Desktop\\interior design\\qa\\qa_p062_desktop.png"
+      },
+      {
+        "p": 0.8,
+        "phase": "Walk deeper",
+        "camera": {
+          "x": 0.11905017957737313,
+          "y": 1.4873677222689565,
+          "z": -1.1980158610862124
+        },
+        "distToCentre": 1.9135510680196355,
+        "inside": true,
+        "nearestWall": 0.6510362491934686,
+        "centerRGB": [
+          141,
+          134,
+          124
+        ],
+        "cornerA": [
+          159,
+          132,
+          103
+        ],
+        "cornerB": [
+          84,
+          80,
+          74
+        ],
+        "cornerC": [
+          173,
+          140,
+          107
+        ],
+        "cornerD": [
+          114,
+          108,
+          99
+        ],
+        "over245Percent": 0,
+        "biggestMesh": {
+          "fraction": 1,
+          "name": "mesh-12",
+          "material": "_10"
+        },
+        "centerProj": {
+          "lookTarget": {
+            "x": 0.10869802992846052,
+            "y": 0.4521611908706081,
+            "behind": true
+          },
+          "boxCentre": {
+            "x": 0.11622455757228653,
+            "y": 2.701298650341818,
+            "behind": true
+          }
+        },
+        "pixelSize": [
+          1920,
+          1080
+        ],
+        "screenshot": "C:\\Users\\DK\\Desktop\\interior design\\qa\\qa_p080_desktop.png"
+      },
+      {
+        "p": 0.93,
+        "phase": "Walk deeper",
+        "camera": {
+          "x": 0.3031895143709007,
+          "y": 1.4999999999999996,
+          "z": -3.4137598752975453
+        },
+        "distToCentre": 3.7410801071102413,
+        "inside": true,
+        "nearestWall": 0.6502389506340372,
+        "centerRGB": [
+          211,
+          206,
+          199
+        ],
+        "cornerA": [
+          111,
+          90,
+          67
+        ],
+        "cornerB": [
+          202,
+          198,
+          194
+        ],
+        "cornerC": [
+          166,
+          136,
+          100
+        ],
+        "cornerD": [
+          209,
+          204,
+          197
+        ],
+        "over245Percent": 0,
+        "biggestMesh": {
+          "fraction": 0,
+          "name": "",
+          "material": ""
+        },
+        "centerProj": {
+          "lookTarget": {
+            "x": 0.21763698304531232,
+            "y": 0.25407693471782766,
+            "behind": true
+          },
+          "boxCentre": {
+            "x": 0.22329871660414347,
+            "y": 1.0147574372096848,
+            "behind": true
+          }
+        },
+        "pixelSize": [
+          1920,
+          1080
+        ],
+        "screenshot": "C:\\Users\\DK\\Desktop\\interior design\\qa\\qa_p093_desktop.png"
+      },
+      {
+        "p": 1,
+        "phase": "Hold",
+        "camera": {
+          "x": 0.2997304058216047,
+          "y": 1.4999999999999996,
+          "z": -3.435565576819928
+        },
+        "distToCentre": 3.7607112557073594,
+        "inside": true,
+        "nearestWall": 0.6461750528488964,
+        "centerRGB": [
+          211,
+          206,
+          199
+        ],
+        "cornerA": [
+          120,
+          99,
+          75
+        ],
+        "cornerB": [
+          202,
+          198,
+          194
+        ],
+        "cornerC": [
+          155,
+          122,
+          87
+        ],
+        "cornerD": [
+          209,
+          204,
+          197
+        ],
+        "over245Percent": 0,
+        "biggestMesh": {
+          "fraction": 0,
+          "name": "",
+          "material": ""
+        },
+        "centerProj": {
+          "lookTarget": {
+            "x": 0.2061685378087849,
+            "y": 0.2540974784042081,
+            "behind": true
+          },
+          "boxCentre": {
+            "x": 0.21153185970011976,
+            "y": 1.0086122164576898,
+            "behind": true
+          }
+        },
+        "pixelSize": [
+          1920,
+          1080
+        ],
+        "screenshot": "C:\\Users\\DK\\Desktop\\interior design\\qa\\qa_p100_desktop.png"
+      }
+    ],
+    "state": {
+      "modelReady": true,
+      "modelFailed": false,
+      "error": null,
+      "entrance": "+z",
+      "side": {
+        "x": 1,
+        "y": 0,
+        "z": 0
+      },
+      "originalBox": {
+        "min": [
+          2.1054572732927275,
+          -0.12699379772516295,
+          -13.09447193145752
+        ],
+        "max": [
+          10.487415107917599,
+          2.7177936956343274,
+          -3.340872287750244
+        ]
+      },
+      "centeredBox": {
+        "min": [
+          -4.190978917312436,
+          -0.1299999999999999,
+          -4.876799821853638
+        ],
+        "max": [
+          4.190978917312436,
+          2.7147874933594904,
+          4.876799821853638
+        ]
+      },
+      "loadedBytes": 5766312,
+      "totalBytes": 5766312
+    },
+    "sweep": {
+      "maxMove": 6.436041675746333,
+      "minWall": 0.6447508575907248,
+      "hx": 4.190978917312436,
+      "hz": 4.876799821853638,
+      "H": 2.8447874933594903,
+      "D": 9.753599643707275
+    },
+    "slide": {
+      "p": 1,
+      "biggestMesh": {
+        "fraction": 0,
+        "name": "",
+        "material": ""
+      }
+    }
+  },
+  "mobile": {
+    "table": [
+      {
+        "p": 0,
+        "phase": "Rotate to the front",
+        "camera": {
+          "x": 2.030601479251249e-15,
+          "y": 3.413759875297546,
+          "z": -16.581119394302366
+        },
+        "distToCentre": 16.928888825150384,
+        "inside": false,
+        "nearestWall": 11.800820182171673,
+        "centerRGB": [
+          131,
+          131,
+          131
+        ],
+        "cornerA": [
+          9,
+          12,
+          16
+        ],
+        "cornerB": [
+          9,
+          12,
+          16
+        ],
+        "cornerC": [
+          9,
+          12,
+          16
+        ],
+        "cornerD": [
+          9,
+          12,
+          16
+        ],
+        "over245Percent": 0,
+        "biggestMesh": {
+          "fraction": 0.9734907837411781,
+          "name": "mesh-0",
+          "material": "PaletteMaterial001"
+        },
+        "centerProj": {
+          "lookTarget": {
+            "x": 2.9688337189122238e-31,
+            "y": -1.0205720560396942e-16,
+            "behind": false
+          },
+          "boxCentre": {
+            "x": 2.959529852595494e-31,
+            "y": -0.14448279429662664,
+            "behind": false
+          }
+        },
+        "pixelSize": [
+          390,
+          844
+        ],
+        "screenshot": "C:\\Users\\DK\\Desktop\\interior design\\qa\\mobile\\qa_p000_mobile.png"
+      },
+      {
+        "p": 0.1,
+        "phase": "Rotate to the front",
+        "camera": {
+          "x": 15.332029044401823,
+          "y": 3.413759875297546,
+          "z": -6.313668169117617
+        },
+        "distToCentre": 16.928888825150384,
+        "inside": false,
+        "nearestWall": 17.244661144944363,
+        "centerRGB": [
+          115,
+          92,
+          69
+        ],
+        "cornerA": [
+          9,
+          12,
+          16
+        ],
+        "cornerB": [
+          9,
+          12,
+          16
+        ],
+        "cornerC": [
+          9,
+          12,
+          16
+        ],
+        "cornerD": [
+          9,
+          12,
+          16
+        ],
+        "over245Percent": 0,
+        "biggestMesh": {
+          "fraction": 0.9734907837411781,
+          "name": "mesh-0",
+          "material": "PaletteMaterial001"
+        },
+        "centerProj": {
+          "lookTarget": {
+            "x": 1.5563887407819446e-15,
+            "y": 5.1028602801984705e-17,
+            "behind": false
+          },
+          "boxCentre": {
+            "x": 1.5413257515755798e-15,
+            "y": -0.1444827942966265,
+            "behind": false
+          }
+        },
+        "pixelSize": [
+          390,
+          844
+        ],
+        "screenshot": "C:\\Users\\DK\\Desktop\\interior design\\qa\\mobile\\qa_p010_mobile.png"
+      },
+      {
+        "p": 0.22,
+        "phase": "Rotate to the front",
+        "camera": {
+          "x": 0,
+          "y": 3.413759875297546,
+          "z": 16.581119394302366
+        },
+        "distToCentre": 16.928888825150384,
+        "inside": false,
+        "nearestWall": 11.922464979367797,
+        "centerRGB": [
+          111,
+          106,
+          100
+        ],
+        "cornerA": [
+          9,
+          12,
+          16
+        ],
+        "cornerB": [
+          9,
+          12,
+          16
+        ],
+        "cornerC": [
+          9,
+          12,
+          16
+        ],
+        "cornerD": [
+          9,
+          12,
+          16
+        ],
+        "over245Percent": 0,
+        "biggestMesh": {
+          "fraction": 0.9734907837411781,
+          "name": "mesh-0",
+          "material": "PaletteMaterial001"
+        },
+        "centerProj": {
+          "lookTarget": {
+            "x": 0,
+            "y": -2.5514301400992353e-17,
+            "behind": false
+          },
+          "boxCentre": {
+            "x": 0,
+            "y": -0.14448279429662655,
+            "behind": false
+          }
+        },
+        "pixelSize": [
+          390,
+          844
+        ],
+        "screenshot": "C:\\Users\\DK\\Desktop\\interior design\\qa\\mobile\\qa_p022_mobile.png"
+      },
+      {
+        "p": 0.34,
+        "phase": "Step back",
+        "camera": {
+          "x": 0,
+          "y": 3.413759875297546,
+          "z": 20.48255925178528
+        },
+        "distToCentre": 20.76509065689544,
+        "inside": false,
+        "nearestWall": 15.811500957520309,
+        "centerRGB": [
+          110,
+          106,
+          100
+        ],
+        "cornerA": [
+          9,
+          12,
+          16
+        ],
+        "cornerB": [
+          9,
+          12,
+          16
+        ],
+        "cornerC": [
+          9,
+          12,
+          16
+        ],
+        "cornerD": [
+          9,
+          12,
+          16
+        ],
+        "over245Percent": 0,
+        "biggestMesh": {
+          "fraction": 0.6415174960483773,
+          "name": "mesh-0",
+          "material": "PaletteMaterial001"
+        },
+        "centerProj": {
+          "lookTarget": {
+            "x": 0,
+            "y": -2.071265687290618e-17,
+            "behind": false
+          },
+          "boxCentre": {
+            "x": 0,
+            "y": -0.11801203409776226,
+            "behind": false
+          }
+        },
+        "pixelSize": [
+          390,
+          844
+        ],
+        "screenshot": "C:\\Users\\DK\\Desktop\\interior design\\qa\\mobile\\qa_p034_mobile.png"
+      },
+      {
+        "p": 0.48,
+        "phase": "Come closer",
+        "camera": {
+          "x": 0,
+          "y": 1.4,
+          "z": 11.704319572448732
+        },
+        "distToCentre": 11.787751976267845,
+        "inside": false,
+        "nearestWall": 6.948169803619385,
+        "centerRGB": [
+          117,
+          111,
+          104
+        ],
+        "cornerA": [
+          9,
+          12,
+          16
+        ],
+        "cornerB": [
+          9,
+          12,
+          16
+        ],
+        "cornerC": [
+          9,
+          12,
+          16
+        ],
+        "cornerD": [
+          9,
+          12,
+          16
+        ],
+        "over245Percent": 0,
+        "biggestMesh": {
+          "fraction": 1,
+          "name": "mesh-0",
+          "material": "PaletteMaterial001"
+        },
+        "centerProj": {
+          "lookTarget": {
+            "x": 0,
+            "y": -0.019669773021487796,
+            "behind": false
+          },
+          "boxCentre": {
+            "x": 0,
+            "y": -0.22977627713534587,
+            "behind": false
+          }
+        },
+        "pixelSize": [
+          390,
+          844
+        ],
+        "screenshot": "C:\\Users\\DK\\Desktop\\interior design\\qa\\mobile\\qa_p048_mobile.png"
+      },
+      {
+        "p": 0.62,
+        "phase": "Zoom inside",
+        "camera": {
+          "x": 0,
+          "y": 1.4530988064875645,
+          "z": 3.6767998218536397
+        },
+        "distToCentre": 3.953524133149884,
+        "inside": true,
+        "nearestWall": 1.13488325920936,
+        "centerRGB": [
+          140,
+          133,
+          124
+        ],
+        "cornerA": [
+          102,
+          122,
+          130
+        ],
+        "cornerB": [
+          199,
+          195,
+          188
+        ],
+        "cornerC": [
+          111,
+          129,
+          132
+        ],
+        "cornerD": [
+          176,
+          160,
+          137
+        ],
+        "over245Percent": 2.902262057191635,
+        "biggestMesh": {
+          "fraction": 1,
+          "name": "mesh-0",
+          "material": "PaletteMaterial001"
+        },
+        "centerProj": {
+          "lookTarget": {
+            "x": 0,
+            "y": -0.06238230454577741,
+            "behind": false
+          },
+          "boxCentre": {
+            "x": 0,
+            "y": -0.7270767752134847,
+            "behind": false
+          }
+        },
+        "pixelSize": [
+          390,
+          844
+        ],
+        "screenshot": "C:\\Users\\DK\\Desktop\\interior design\\qa\\mobile\\qa_p062_mobile.png"
+      },
+      {
+        "p": 0.8,
+        "phase": "Walk deeper",
+        "camera": {
+          "x": 0.11905017957737313,
+          "y": 1.4873677222689565,
+          "z": -1.1980158610862124
+        },
+        "distToCentre": 1.9135510680196355,
+        "inside": true,
+        "nearestWall": 0.6510362491934686,
+        "centerRGB": [
+          141,
+          134,
+          124
+        ],
+        "cornerA": [
+          108,
+          99,
+          89
+        ],
+        "cornerB": [
+          131,
+          125,
+          118
+        ],
+        "cornerC": [
+          155,
+          140,
+          118
+        ],
+        "cornerD": [
+          137,
+          125,
+          111
+        ],
+        "over245Percent": 0,
+        "biggestMesh": {
+          "fraction": 1,
+          "name": "mesh-12",
+          "material": "_10"
+        },
+        "centerProj": {
+          "lookTarget": {
+            "x": 0.4181932182774733,
+            "y": 0.4521611908706081,
+            "behind": true
+          },
+          "boxCentre": {
+            "x": 0.44714997876243806,
+            "y": 2.701298650341818,
+            "behind": true
+          }
+        },
+        "pixelSize": [
+          390,
+          844
+        ],
+        "screenshot": "C:\\Users\\DK\\Desktop\\interior design\\qa\\mobile\\qa_p080_mobile.png"
+      },
+      {
+        "p": 0.93,
+        "phase": "Walk deeper",
+        "camera": {
+          "x": 0.3031895143709007,
+          "y": 1.4999999999999996,
+          "z": -3.4137598752975453
+        },
+        "distToCentre": 3.7410801071102413,
+        "inside": true,
+        "nearestWall": 0.6502389506340372,
+        "centerRGB": [
+          211,
+          206,
+          199
+        ],
+        "cornerA": [
+          204,
+          200,
+          195
+        ],
+        "cornerB": [
+          204,
+          200,
+          194
+        ],
+        "cornerC": [
+          224,
+          217,
+          208
+        ],
+        "cornerD": [
+          220,
+          213,
+          204
+        ],
+        "over245Percent": 0,
+        "biggestMesh": {
+          "fraction": 0,
+          "name": "",
+          "material": ""
+        },
+        "centerProj": {
+          "lookTarget": {
+            "x": 0.8373133387589452,
+            "y": 0.25407693471782766,
+            "behind": true
+          },
+          "boxCentre": {
+            "x": 0.8590956891801578,
+            "y": 1.0147574372096848,
+            "behind": true
+          }
+        },
+        "pixelSize": [
+          390,
+          844
+        ],
+        "screenshot": "C:\\Users\\DK\\Desktop\\interior design\\qa\\mobile\\qa_p093_mobile.png"
+      },
+      {
+        "p": 1,
+        "phase": "Hold",
+        "camera": {
+          "x": 0.2997304058216047,
+          "y": 1.4999999999999996,
+          "z": -3.435565576819928
+        },
+        "distToCentre": 3.7607112557073594,
+        "inside": true,
+        "nearestWall": 0.6461750528488964,
+        "centerRGB": [
+          211,
+          206,
+          199
+        ],
+        "cornerA": [
+          204,
+          200,
+          195
+        ],
+        "cornerB": [
+          204,
+          200,
+          194
+        ],
+        "cornerC": [
+          224,
+          217,
+          208
+        ],
+        "cornerD": [
+          219,
+          213,
+          204
+        ],
+        "over245Percent": 0,
+        "biggestMesh": {
+          "fraction": 0,
+          "name": "",
+          "material": ""
+        },
+        "centerProj": {
+          "lookTarget": {
+            "x": 0.7931908645498096,
+            "y": 0.2540974784042081,
+            "behind": true
+          },
+          "boxCentre": {
+            "x": 0.8138251377180676,
+            "y": 1.0086122164576898,
+            "behind": true
+          }
+        },
+        "pixelSize": [
+          390,
+          844
+        ],
+        "screenshot": "C:\\Users\\DK\\Desktop\\interior design\\qa\\mobile\\qa_p100_mobile.png"
+      }
+    ],
+    "state": {
+      "modelReady": true,
+      "modelFailed": false,
+      "error": null,
+      "entrance": "+z",
+      "side": {
+        "x": 1,
+        "y": 0,
+        "z": 0
+      },
+      "originalBox": {
+        "min": [
+          2.1054572732927275,
+          -0.12699379772516295,
+          -13.09447193145752
+        ],
+        "max": [
+          10.487415107917599,
+          2.7177936956343274,
+          -3.340872287750244
+        ]
+      },
+      "centeredBox": {
+        "min": [
+          -4.190978917312436,
+          -0.1299999999999999,
+          -4.876799821853638
+        ],
+        "max": [
+          4.190978917312436,
+          2.7147874933594904,
+          4.876799821853638
+        ]
+      },
+      "loadedBytes": 5766312,
+      "totalBytes": 5766312
+    },
+    "sweep": {
+      "maxMove": 6.436041675746333,
+      "minWall": 0.6447508575907248,
+      "hx": 4.190978917312436,
+      "hz": 4.876799821853638,
+      "H": 2.8447874933594903,
+      "D": 9.753599643707275
+    }
+  },
+  "preview": {
+    "modelReady": true,
+    "modelFailed": false,
+    "error": null,
+    "entrance": "+z",
+    "side": {
+      "x": 1,
+      "y": 0,
+      "z": 0
+    },
+    "originalBox": {
+      "min": [
+        2.1054572732927275,
+        -0.12699379772516295,
+        -13.09447193145752
+      ],
+      "max": [
+        10.487415107917599,
+        2.7177936956343274,
+        -3.340872287750244
+      ]
+    },
+    "centeredBox": {
+      "min": [
+        -4.190978917312436,
+        -0.1299999999999999,
+        -4.876799821853638
+      ],
+      "max": [
+        4.190978917312436,
+        2.7147874933594904,
+        4.876799821853638
+      ]
+    },
+    "loadedBytes": 5766312,
+    "totalBytes": 5766312,
+    "glbMagic": "glTF",
+    "glbBytes": 5766312
+  }
+}

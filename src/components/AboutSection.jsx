@@ -76,7 +76,7 @@ export default function AboutSection({
                     </p>
                     <div className="u-24" />
                     <div className="about-s_btn" data-reveal="ctn">
-                      <div className="btn" hover-btn>
+                      <div className="btn">
                         <div className="btn_label">
                           <a className="nav-item" href="#mission">
                             <div className="nav-item_label">

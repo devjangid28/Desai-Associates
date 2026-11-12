@@ -80,6 +80,11 @@
   height: var(--u8);
   flex: none;
 }
+.preloader__logo-row {
+  flex: none;
+  position: relative;
+  z-index: 1;
+}
 .preloader__c_c {
   flex: 1;
   min-height: 0;
