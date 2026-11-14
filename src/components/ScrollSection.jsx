@@ -2,7 +2,7 @@ import { useLayoutEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { SplitText } from 'gsap/SplitText'
-import { TERMS, PROJECTS, LAST_PROJECT, CIERRE } from '../data/scrollSectionContent.js'
+import { TERMS, PROJECTS, LAST_ITEM } from '../data/scrollSectionContent.js'
 import './ScrollSection.css'
 
 gsap.registerPlugin(ScrollTrigger, SplitText)
@@ -20,10 +20,39 @@ gsap.registerPlugin(ScrollTrigger, SplitText)
      https://normalisboring.es/
    ------------------------------------------------------------------ */
 
-// final cierre content offset, measured from the reference final frame
-// (the reference's own formula would fill the viewport; the measured
-// final frame shows the content at 37.5% — reference fidelity wins)
-const CIERRE_X_END = 37.5
+/* ---- last-item (project 05) vertical ending (measured on reference) ----
+   All values below were measured on https://normalisboring.es/ at
+   1440x900 and 1920x1080 (see qa/last-item-reference.json):
+   - panel 05 shrinks 60vw -> 42.5vw while the white text block slides
+     in from the right (40vw -> 57.5vw wide) and the carousel rises
+   - the vertical phase takes an extra (measured) scroll length; the
+     reference creates it with its pin element, here it is added to the
+     scroll distance instead
+   - the animation runs inside the SAME master timeline as the track
+*/
+const PANEL_FINAL_VW = 42.5
+const CONTENT_FINAL_VW = 57.5
+const EXTRA_VERTICAL_VW = 92.3 // measured last-phase scroll length (px / vw)
+const START_LEFT_VW = 0 // panel 05 screen-left when the vertical phase starts (reference holds it at 0)
+
+// Panels 01-04 grow from the LIVE left edge of each panel (measured on the
+// reference, see qa/ref/projects-timings.md). Each panel starts growing at
+// 80vw and finishes at 20vw; width 15 -> 60vw and image height 87 -> 66.66vh
+// share one progress value eased with power1.inOut (quadratic). Text reveals
+// scrub across the panel's travel: starts at 60vw, completes at 30vw (the
+// panel is then mid-screen), so the characters rise slowly with the scroll.
+const PANEL_START_VW = 80
+const PANEL_END_VW = 20
+const TEXT_START_VW = 60
+const TEXT_END_VW = 30
+
+const easePower1InOut = (p) => (p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2)
+
+// Old track widths that no longer exist (last panel 42.5vw + closing
+// panel 150vw). These are only used to remap the remaining animations'
+// phases from the old, longer scroll distance onto the new one so every
+// reveal still starts/ends at the same horizontal position on screen.
+const OLD_EXTRA_VW = 42.5 + 150
 
 function ProjectButton({ item }) {
   return (
@@ -32,10 +61,7 @@ function ProjectButton({ item }) {
         href={item.href}
         className={`btn btn--bg btn--bg-inv ${item.bgBtn} f-edit t-parrafo-l ${item.disabled ? 'disabled' : ''}`}
       >
-        <span className="btn--label">
-          <span>{item.btn}</span>
-          <span aria-hidden="true">{item.btn}</span>
-        </span>
+        <span>{item.btn}</span>
       </a>
     </span>
   )
@@ -69,23 +95,86 @@ export default function ScrollSection() {
 
     const termsEl = sc.querySelector('.mod-scroll__terms')
     const projectItems = Array.from(sc.querySelectorAll('.mod-scroll__projects__item:not(.last-item)'))
-    const lastProject = sc.querySelector('.mod-scroll__projects__item.last-item')
-    const cierre = sc.querySelector('.mod-scroll__cierre')
 
     const vw = () => window.innerWidth / 100
-    let baseW = 0
+    let lastNatX = 0
+    let lastTermsW = 0
+    let phaseStartLeft = 0
+    let phaseStartTime = 0
+    const restoreStyle = (el, saved) => {
+      if (saved === null || saved === undefined) el.removeAttribute('style')
+      else el.setAttribute('style', saved)
+    }
     const measureFinalDist = () => {
-      if (!baseW) {
-        const termsW = termsEl ? termsEl.getBoundingClientRect().width : 0
-        const wrapW = (sc.querySelector('.mod-scroll__projects__wrap-text') || { getBoundingClientRect: () => ({ width: 0 }) }).getBoundingClientRect().width
-        baseW = termsW + wrapW
-      }
-      const finalW = baseW + (4 * 60 + 42.5 + 150) * vw()
-      finalDist = Math.max(finalW - window.innerWidth, 1)
+      // The values block's width changes while its term paddings animate
+      // (6.05/1.51/10.09vw -> 12/3/20vw), so measure the whole track in its
+      // FINAL state: force the end paddings and panel widths, measure,
+      // then restore the original inline styles (GSAP still owns them).
+      const terms = termsEl ? Array.from(termsEl.querySelectorAll('.mod-scroll__terms__term')) : []
+      const items = Array.from(sc.querySelectorAll('.mod-scroll__projects__item'))
+      const savedTerms = terms.map((t) => t.getAttribute('style'))
+      const savedItems = items.map((it) => it.getAttribute('style'))
+      terms.forEach((t, i) => {
+        if (i === 1) t.style.paddingRight = '3vw'
+        else t.style.paddingLeft = i === 0 ? '12vw' : '20vw'
+      })
+      const lastItem = sc.querySelector('.mod-scroll__projects__item.last-item')
+      items.forEach((it) => {
+        if (it.classList.contains('last-item')) it.style.setProperty('--panel-w', `${PANEL_FINAL_VW}vw`)
+        else it.style.width = '60vw'
+      })
+      // use layout-only sizes: getBoundingClientRect() is affected by ancestor
+      // transforms (e.g. the preloader's scale), which would corrupt the
+      // measured distance while the preloader is still animating
+      // natural (untransformed) left edge of the last-item group inside the track
+      let natX = 0
+      if (lastItem) natX = lastItem.offsetLeft
+      let termsW = 0
+      if (termsEl) termsW = termsEl.offsetWidth
+      terms.forEach((t, i) => restoreStyle(t, savedTerms[i]))
+      items.forEach((it, i) => restoreStyle(it, savedItems[i]))
+      lastNatX = natX
+      lastTermsW = termsW
+      // Total track travel must bring the group (natural offset = termsW + natX
+      // inside .mod-scroll) to x = 0 on screen at the end. The group drifts
+      // from START_LEFT_VW to 0 while the track keeps moving during the
+      // vertical phase, so split travel into pre-phase + phase.
+      const finalTravel = termsW + natX
+      phaseStartLeft = Math.min(START_LEFT_VW * vw(), Math.max(finalTravel * 0.2, 1))
+      const preTravel = Math.max(finalTravel - phaseStartLeft, 1)
+      const extraPx = EXTRA_VERTICAL_VW * vw()
+      finalDist = preTravel + extraPx
+      phaseStartTime = (preTravel / finalDist) * 100
       return finalDist
     }
 
+    // Remap a timeline time (in units of the 100-unit master timeline) from
+    // the old scroll distance to the new one, preserving the fraction of the
+    // horizontal phase (everything before the vertical phase starts).
+    const remapTime = (t) => {
+      if (!phaseStartTime) return t
+      return (t * phaseStartTime) / 100
+    }
+
     const ctx = gsap.context(() => {}, sc)
+
+    // animate the panel width through --panel-w via a proxy object (GSAP's
+    // direct custom-property tweening is flaky for this element/flow)
+    const lastItemEl = () => sc.querySelector('.mod-scroll__projects__item.last-item')
+    const setPanelW = (v) => {
+      const el = lastItemEl()
+      if (el) el.style.setProperty('--panel-w', `${v}vw`)
+    }
+    const panelWTween = (tl, fromVw, toVw, duration, ease, position) => {
+      const st = { v: fromVw }
+      setPanelW(fromVw)
+      return tl.to(st, {
+        v: toVw,
+        duration,
+        ease,
+        onUpdate: () => setPanelW(st.v),
+      }, position)
+    }
 
     /* ---------------- terms: active-term image/text swap ----------------
        Works on hover (desktop) and from scroll position (touch). The
@@ -127,14 +216,22 @@ export default function ScrollSection() {
     }
 
     if (termsEl && !touchMode) {
+      const mouseEl = document.getElementById('mouse')
       const followMouse = termsEl.querySelector('.follow__mouse')
-      const pointer = { x: -9999, y: -9999 }
+      const pointer = { x: window.innerWidth / 2, y: window.innerHeight / 2 }
+      const pos = { x: pointer.x, y: pointer.y }
+      let speed = 0.2
+      let mode = 'cursor'
       const inside = { v: false }
 
-      gsap.set(followMouse, { xPercent: -50, yPercent: -50, x: 0, y: 0 })
+      gsap.set(followMouse, { x: 0, y: 0, scale: 0, opacity: 0 })
 
-      const xTo = gsap.quickTo(followMouse, 'x', { duration: 0.4, ease: 'power3.out' })
-      const yTo = gsap.quickTo(followMouse, 'y', { duration: 0.4, ease: 'power3.out' })
+      const setCX = gsap.quickSetter(mouseEl, 'x', 'px')
+      const setCY = gsap.quickSetter(mouseEl, 'y', 'px')
+      const setFX = gsap.quickSetter(followMouse, 'x', 'px')
+      const setFY = gsap.quickSetter(followMouse, 'y', 'px')
+      setCX(pos.x)
+      setCY(pos.y)
 
       const onMove = (e) => {
         pointer.x = e.clientX
@@ -143,31 +240,48 @@ export default function ScrollSection() {
       window.addEventListener('mousemove', onMove, { passive: true })
       cleanups.push(() => window.removeEventListener('mousemove', onMove))
 
-      const showFollow = () => {
-        if (inside.v) return
+      const enterFollow = () => {
+        if (mode === 'follow') return
+        mode = 'follow'
         inside.v = true
-        gsap.to(followMouse, { opacity: 1, duration: 0.33, ease: 'power2.out', overwrite: 'auto' })
+        speed = 0.1
+        gsap.to(mouseEl, { scale: 0, opacity: 0, duration: 0.33, ease: 'power2.out', overwrite: 'auto' })
+        gsap.fromTo(followMouse, { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.33, ease: 'power2.out', overwrite: 'auto' })
       }
-      const hideFollow = () => {
-        if (!inside.v) return
+      const leaveFollow = () => {
+        if (mode !== 'follow') return
+        mode = 'cursor'
         inside.v = false
-        gsap.to(followMouse, { opacity: 0, duration: 0.33, ease: 'power2.out', overwrite: 'auto' })
+        speed = 0.2
+        gsap.to(followMouse, { scale: 0, opacity: 0, duration: 0.33, ease: 'power2.out', overwrite: 'auto' })
+        gsap.fromTo(mouseEl, { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.33, ease: 'power2.out', overwrite: 'auto' })
       }
 
       const tickFollow = () => {
+        const dt = 1 - Math.pow(1 - speed, gsap.ticker.deltaRatio())
+        pos.x += (pointer.x - pos.x) * dt
+        pos.y += (pointer.y - pos.y) * dt
         const r = termsEl.getBoundingClientRect()
         const inBox = pointer.x >= r.left && pointer.x <= r.right && pointer.y >= r.top && pointer.y <= r.bottom
-        if (inBox && !inside.v) showFollow()
-        if (!inBox && inside.v) hideFollow()
-        if (!inBox) return
-        const px = pointer.x - r.left
-        const py = pointer.y - r.top
-        xTo(px)
-        yTo(py)
+        if (inBox && !inside.v) enterFollow()
+        if (!inBox && inside.v) leaveFollow()
+        if (mode === 'cursor') {
+          setCX(pos.x)
+          setCY(pos.y)
+          return
+        }
+        // inside terms: follow position is relative to the terms box
+        const px = pos.x - r.left
+        const py = pos.y - r.top
+        setFX(px)
+        setFY(py)
         const terms = termsEl.querySelectorAll('.mod-scroll__terms__term')
         for (let i = 0; i < terms.length; i++) {
           const t = terms[i].getBoundingClientRect()
-          if (px >= t.left - r.left && px <= t.right - r.left) {
+          if (
+            px >= t.left - r.left && px <= t.right - r.left &&
+            py >= t.top - r.top && py <= t.bottom - r.top
+          ) {
             setActiveTerm(i)
             return
           }
@@ -178,20 +292,25 @@ export default function ScrollSection() {
 
       window.__RESET_FOLLOW__ = () => {
         gsap.killTweensOf(followMouse)
-        gsap.set(followMouse, { opacity: 0 })
+        gsap.killTweensOf(mouseEl)
+        gsap.set(followMouse, { scale: 0, opacity: 0 })
+        gsap.set(mouseEl, { scale: 1, opacity: 1 })
         inside.v = false
-        pointer.x = -9999
-        pointer.y = -9999
+        mode = 'cursor'
+        speed = 0.2
+        pointer.x = window.innerWidth / 2
+        pointer.y = window.innerHeight / 2
       }
       cleanups.push(() => delete window.__RESET_FOLLOW__)
     }
 
     /* ---------------- project text timelines (copy of reference) -------- */
     const makeTextTl = (item) => {
-      const textTitle = item.querySelector('.mod-scroll__projects__item__text__title')
+      const textTitleEl = item.querySelector('.mod-scroll__projects__item__text__title')
+      const textTitle = textTitleEl.firstElementChild || textTitleEl
       const dataTitle = item.querySelectorAll('.mod-scroll__projects__item__text__data > div:not(.data-number)')
       const linkTitle = item.querySelector('.mod-scroll__projects__item__text__data a.btn')
-      const titleSplit = SplitText.create(textTitle, { type: 'chars', charsClass: 'char' })
+      const titleSplit = SplitText.create(textTitle, { type: 'chars' })
       splits.push(titleSplit)
       const d0 = dataTitle[0]?.querySelector('span')
       const d1 = dataTitle[1]?.querySelector('span')
@@ -208,31 +327,6 @@ export default function ScrollSection() {
       return tl
     }
 
-    const makeLastContentTl = () => {
-      const tl = gsap.timeline({ paused: true })
-      const sectionEl = lastProject.querySelector('.last-item__content__section')
-      const titleLines = lastProject.querySelectorAll('.last-item__content__title .line')
-      const textSpans = lastProject.querySelectorAll('.last-item__content__text span')
-
-      gsap.set(sectionEl, { opacity: 0, yPercent: 100 })
-      titleLines.forEach((el, ind) => {
-        const splitLine = SplitText.create(el, { type: 'chars', charsClass: 'char' })
-        splits.push(splitLine)
-        const posInit = ind % 2 === 0 ? 110 : -110
-        gsap.set(splitLine.chars, { yPercent: posInit })
-      })
-      gsap.set(textSpans, { yPercent: 100 })
-
-      tl.from(sectionEl, { opacity: 0, yPercent: 100, duration: 0.33 }, 0)
-      titleLines.forEach((el, ind) => {
-        const splitLine = SplitText.create(el, { type: 'chars', charsClass: 'char' })
-        const posInit = ind % 2 === 0 ? 110 : -110
-        tl.from(splitLine.chars, { yPercent: posInit, duration: 0.65, stagger: 0.03, ease: 'power3.out' }, '<+=0.2')
-      })
-      tl.from(textSpans, { yPercent: 100, duration: 0.5, stagger: 0.09, ease: 'power3.easeOut' }, '<+=0.33')
-      return tl
-    }
-
     /* ---------------- build (Pattern A) ---------------- */
     const build = () => {
       if (built) return
@@ -240,37 +334,57 @@ export default function ScrollSection() {
 
       const sections = Array.from(sc.querySelectorAll(':scope > div'))
       measureFinalDist()
+      // reference: the values wrapper width is fixed by JS at refresh time
+      // (gsap.set(elem, {width: elem.offsetWidth})); here we fix it to the
+      // measured final width so the track geometry stays identical
+      if (termsEl) gsap.set(termsEl, { width: lastTermsW })
       wrap.style.height = `${window.innerHeight + finalDist}px`
 
-      /* 1. main track tween + scrub trigger (no pin) */
+      /* 1. main track tween + scrub trigger (no pin).
+         The track moves the whole pinned section; its horizontal travel ends
+         exactly when the last-item group reaches x = 0 on screen (finalTravel),
+         then it keeps moving slowly during the vertical phase so the group is
+         glued to panel 04 the whole time (no compensation hack). */
       const trackTl = gsap.timeline({ paused: true })
-      trackTl.to(sections, { x: -finalDist, duration: 100, ease: 'none' }, 0)
+      const finalTravel = lastTermsW + lastNatX
+      const preTravel = Math.max(finalTravel - phaseStartLeft, 1)
+      trackTl.to(sections, { x: () => -preTravel, duration: phaseStartTime, ease: 'none' }, 0)
+      trackTl.to(sections, { x: () => -finalTravel, duration: 100 - phaseStartTime, ease: 'none' }, phaseStartTime)
       ScrollTrigger.create({
         animation: trackTl,
         trigger: wrap,
         start: 'top top',
-        end: 'bottom bottom',
-        scrub: 0.2,
+        end: () => '+=' + Math.max(wrap.offsetHeight - window.innerHeight, 1),
+        scrub: 1,
         invalidateOnRefresh: true,
       })
 
-      /* 2. VALUES track: term paddings + title color flip (driven by the
-         same track timeline, positioned at the measured phase window) */
+      /* 2. VALUES track: term paddings scrubbed over the terms block
+          crossing the viewport. Reference: containerAnimation trigger
+          start "0% 100%" end "100% 0%", scrub 1; paddings start at 0
+          (no initial padding) and end at 12/3/20vw. It is driven here by
+          the master track timeline at the exact times the block crosses
+          the viewport (left edge at the right edge -> right edge at the
+          left edge), which is equivalent and deterministic. The wrapper
+          width is fixed by JS at build time (reference: gsap.set(elem,
+          {width: elem.offsetWidth})) so the paddings do not reflow the
+          track; here it is fixed to the measured final width so the track
+          geometry (and the last-item phase) stays untouched. */
       if (termsEl) {
         const terms = termsEl.querySelectorAll('.mod-scroll__terms__term')
-        const termsTl = gsap.timeline()
-        termsTl.to(terms[0], { paddingLeft: '12vw', duration: 12, ease: 'power1.inOut' }, 3)
-        termsTl.to(terms[1], { paddingRight: '3vw', duration: 12, ease: 'power1.inOut' }, 3)
-        termsTl.to(terms[1].querySelector('.mod-scroll__terms__term__text'), { marginRight: '3vw', duration: 12, ease: 'power1.inOut' }, 3)
-        termsTl.to(terms[2], { paddingLeft: '20vw', duration: 12, ease: 'power1.inOut' }, 3)
-        // title color flips while the term crosses the viewport centre:
-        // the .title__filter layer inverts, so animating the color to
-        // white produces the measured reference curve (base #000 -> #fff)
-        terms.forEach((term) => {
-          const colorEl = term.querySelector('.mod-scroll__terms__term__title__color')
-          if (colorEl) termsTl.to(colorEl, { color: '#ffffff', duration: 6, ease: 'none' }, 6)
-        })
-        trackTl.add(termsTl, 0)
+        const tl = termsEl.offsetLeft
+        const tw = termsEl.offsetWidth
+        const iw = window.innerWidth
+        const tAtX = (absX) => Math.min(Math.max((absX / preTravel), 0), 1) * phaseStartTime
+        const t0 = tAtX(tl + tw - iw)
+        const t1 = tAtX(tl + tw)
+        const termsTl = gsap.timeline({ paused: true })
+        const seg = (t1 - t0) / 4
+        termsTl.to(terms[0], { paddingLeft: '12vw', duration: seg, ease: 'none' }, 0)
+        termsTl.to(terms[1], { paddingRight: '3vw', duration: seg, ease: 'none' }, 0)
+        termsTl.to(terms[1].querySelector('.mod-scroll__terms__term__text'), { marginRight: '3vw', duration: seg, ease: 'none' }, 0)
+        termsTl.to(terms[2], { paddingLeft: '20vw', duration: seg, ease: 'none' }, 0)
+        trackTl.add(termsTl, t0)
 
         // active term on touch/scroll: closest to viewport centre
         if (touchMode) {
@@ -313,149 +427,234 @@ export default function ScrollSection() {
           containerAnimation: trackTl,
           trigger: wrapText,
           start: 'left 75%',
-          scrub: 0,
+          toggleActions: 'play none none none',
           invalidateOnRefresh: true,
         })
       }
 
-      /* 4. project panels 1-4: width/image height + text reveals */
+      /* 4. project panels 1-4: width/image height + text reveals.
+          Driven from each panel's LIVE left edge every frame (see step 3 of
+          the task): p_i = clamp((START_VW - left_i/vw) / (START_VW -
+          END_VW)), eased with power1.inOut, shared by width and image height.
+          Evaluated in panel order so a panel's width never feeds back into
+          its own left edge; fully reversible and scroll-speed independent.
+          Text reveals scrub as one sub-timeline per panel over its measured
+          left-edge window. Panels 1-4 no longer live in the master track
+          timeline. */
       if (projectItems.length) {
-        const projectsTl = gsap.timeline({ paused: true })
-        const H = 33.33
-        projectItems.forEach((item, index) => {
-          const textTl = makeTextTl(item)
-          const media = item.querySelector('.media__source')
-          const time = index * 1
-          projectsTl.to(item, {
-            opacity: 1,
-            duration: 0.005,
-            onComplete: () => {
-              textTl.pause()
-              textTl.play()
-            },
-            onReverseComplete: () => {
-              textTl.pause()
-              textTl.timeScale(-2.5)
-              textTl.reverse()
-            },
-          }, time + 0.5)
-          projectsTl.fromTo(item, { width: '15vw' }, { width: '60vw', duration: 1, ease: 'power1.inOut(1)' }, time)
-          projectsTl.fromTo(media, { height: '87vh' }, { height: `${H * 2}vh`, duration: 1, ease: 'power1.inOut(.1)' }, time)
-        })
-        ScrollTrigger.create({
-          animation: projectsTl,
-          containerAnimation: trackTl,
-          trigger: projectItems[0],
-          start: '0% 80%',
-          end: '+=240%',
-          scrub: 0,
-          invalidateOnRefresh: true,
-        })
+        const panelText = projectItems.map((item) => ({
+          item,
+          media: item.querySelector('.media__source'),
+          textTl: makeTextTl(item),
+        }))
+        const lastItemEl = sc.querySelector('.mod-scroll__projects__item.last-item')
+        const lastTextTl = lastItemEl ? makeTextTl(lastItemEl) : null
+        const lastMedia = lastItemEl ? lastItemEl.querySelector('.last-item__panel .media__source') : null
+        const updatePanels = () => {
+          const iw = window.innerWidth
+          const applyLeft = (item, media, textTl, setWidth) => {
+            const leftVw = (item.getBoundingClientRect().left / iw) * 100
+            const raw = (PANEL_START_VW - leftVw) / (PANEL_START_VW - PANEL_END_VW)
+            const p = Math.min(Math.max(raw, 0), 1)
+            const ep = easePower1InOut(p)
+            setWidth(15 + 45 * ep)
+            if (media) media.style.height = `${87 - 20.34 * ep}vh`
+            const tRaw = (TEXT_START_VW - leftVw) / (TEXT_START_VW - TEXT_END_VW)
+            const tp = Math.min(Math.max(tRaw, 0), 1)
+            if (textTl) textTl.totalProgress(tp)
+          }
+          for (let i = 0; i < panelText.length; i++) {
+            const { item, media, textTl } = panelText[i]
+            applyLeft(item, media, textTl, (w) => { item.style.width = `${w}vw` })
+          }
+          // panel 05 (last-item group): drive its width via --panel-w, then
+          // stop once it is fully grown (vertical phase owns it from there)
+          if (lastItemEl) {
+            const leftVw = (lastItemEl.getBoundingClientRect().left / iw) * 100
+            if (leftVw > PANEL_END_VW) {
+              applyLeft(lastItemEl, lastMedia, lastTextTl, (w) => {
+                lastItemEl.style.setProperty('--panel-w', `${w}vw`)
+              })
+            }
+          }
+        }
+        gsap.ticker.add(updatePanels)
+        cleanups.push(() => gsap.ticker.remove(updatePanels))
+        if (debug) {
+          window.__PROJ_TRIGGERS__ = () => []
+        }
       }
 
-      /* 5. last panel (Pol43): carousel + content reveals */
-      if (lastProject) {
-        const lastContentTl = makeLastContentTl()
-        const lastCarousel = lastProject.querySelector('.last-item__carousel')
-        const lastContent = lastProject.querySelector('.last-item__content')
-        const lastItems = Array.from(lastProject.querySelectorAll('.last-item__carousel__item:not(.last-item__carousel__item--link)'))
-        const numItem = lastProject.querySelectorAll('.last-item__carousel__item').length
-        const H = 33.33
-        const adjust = 50
-        const widthPin = (numItem - 1) * 100
-        const widthCarouselLast = 42.5
-        const maxWidthItem = 60
+      /* 4a. panel 05 (last-item) width/image/text reveal: driven from its
+         LIVE left edge like panels 01-04 (see updatePanels below), so it
+         expands while entering the viewport from the right and its text
+         scrubs over the same left-edge window. The vertical last-item phase
+         (below) is untouched and takes over once the group reaches 0. */
 
-        const lastTl = gsap.timeline({ paused: true })
-        lastTl.to(lastProject, { x: `${widthPin - adjust}vw`, duration: 3, ease: 'none' }, 0)
-        lastTl.fromTo(lastProject, { width: `${maxWidthItem}vw` }, { width: `${widthCarouselLast}vw`, duration: 1, ease: 'none' }, 0)
-        lastTl.fromTo(lastContent, { width: `${100 - maxWidthItem}vw`, x: `${maxWidthItem}vw` },
-          { width: `${100 - widthCarouselLast}vw`, x: `${widthCarouselLast}vw`, duration: 1, ease: 'none' }, 0)
-        lastTl.fromTo(lastCarousel, { y: '100vh' }, { y: `${100 - H * (numItem - 1)}vh`, duration: 1, ease: 'none' }, 0)
-        lastTl.fromTo(lastContent, { y: '0' }, { y: `-${H * (numItem - 2)}vh`, duration: 1, ease: 'none' }, 0)
-        lastTl.from(lastItems, { height: '66vh', duration: 1, ease: 'none' }, 0)
-        lastTl.to(lastCarousel, { y: `-${H * (numItem - 3)}vh`, duration: 0.75, ease: 'none' }, 1)
-        lastTl.to(lastContent, { y: `-${H * (numItem - 1)}vh`, duration: 0.75, ease: 'none' }, 1)
-        lastTl.to(lastItems, {
+      /* 4b. LAST-ITEM vertical phase (same master timeline as the track).
+          Mirrors the reference's lastProject_tl + lastProject_content_tl:
+          - the group (panel 05 + carousel + white block) moves only with the
+            track; its left edge stays glued to panel 04's right edge
+          - t 0..1: the panel narrows 60vw -> 42.5vw (--panel-w); the
+            carousel (CSS: left 0, width = --panel-w) and the white block
+            (CSS: left = --panel-w, width = 100vw - --panel-w) follow by
+            construction; the carousel rises 100vh -> 33.34vh, items shrink
+            66vh -> 33.33vh, the panel's inner content rises
+          - t 1..1.75: carousel -> 0, items -> 37.5vh (power1.inOut), text
+            block reveals play (time-based, as in the reference) */
+      const lastItem = sc.querySelector('.mod-scroll__projects__item.last-item')
+      if (lastItem) {
+        const carousel = lastItem.querySelector('.last-item__carousel')
+        const sectionEl = lastItem.querySelector('.last-item__content__section')
+        const titleEl = lastItem.querySelector('.last-item__content__title')
+        const textEl = lastItem.querySelector('.last-item__content__text')
+        const carItems = Array.from(carousel.querySelectorAll('.last-item__carousel__item:not(.last-item__carousel__item--link)'))
+        const innerContent = lastItem.querySelector('.mod-scroll__projects__item__content')
+
+        // text-block reveal timeline (plays on stage-2 start, time-based)
+        const titleSplit = SplitText.create(titleEl, { type: 'chars', charsClass: 'char' })
+        splits.push(titleSplit)
+
+        // paragraph: split into lines dynamically (word-by-word grouping by
+        // offsetTop) after fonts are ready; re-split on resize / font load
+        const escHtml = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+        const splitParagraphLines = () => {
+          const p = textEl.querySelector('p')
+          if (!p) return []
+          // Always split from the authored source, never from rebuilt DOM:
+          // textContent of sibling line divs has no boundary whitespace, so a
+          // re-split would weld words together.
+          const words = LAST_ITEM.paragraph.trim().split(/\s+/).filter(Boolean)
+          p.innerHTML = words.map((w) => `<span class="par-word">${escHtml(w)}</span>`).join(' ')
+          const ws = Array.from(p.querySelectorAll('.par-word'))
+          const lineGroups = []
+          let cur = []
+          let lastTop = null
+          for (const el of ws) {
+            const top = Math.round(el.offsetTop)
+            if (cur.length && top !== lastTop) {
+              lineGroups.push(cur)
+              cur = []
+            }
+            lastTop = top
+            cur.push(el)
+          }
+          if (cur.length) lineGroups.push(cur)
+          p.innerHTML = lineGroups
+            .map((ln) => `<div class="line"><span class="w-100">${ln.map((el) => el.outerHTML).join(' ')}</span></div>`)
+            .join('')
+          return Array.from(p.querySelectorAll('.line'))
+        }
+
+        let contentTl = null
+        const buildContentTl = () => {
+          if (contentTl) {
+            contentTl.kill()
+            contentTl = null
+          }
+          const lineEls = splitParagraphLines()
+          const textSpans = lineEls.map((l) => l.querySelector('span'))
+          gsap.set(textSpans, { yPercent: 100 })
+          contentTl = gsap.timeline({ paused: true })
+          contentTl.fromTo(sectionEl, { opacity: 0, y: '100%' }, { opacity: 1, y: '0%', duration: 0.33 })
+          Array.from(titleEl.querySelectorAll('.line')).forEach((el, ind) => {
+            const posInit = ind % 2 !== 0 ? '-110%' : '110%'
+            contentTl.fromTo(el.querySelectorAll('.char'), { y: posInit }, { y: '0%', duration: 0.65, stagger: 0.03, ease: 'power3.out' }, '<+=0.2')
+          })
+          contentTl.fromTo(textSpans, { yPercent: 100 }, { yPercent: 0, duration: 0.5, stagger: 0.09, ease: 'power3.easeOut' }, '<+=0.33')
+          return contentTl
+        }
+        buildContentTl()
+
+        const u1 = (100 - phaseStartTime) / 3.75
+        const u2 = 0.75 * u1
+        const lastTl = gsap.timeline()
+        if (debug) {
+          window.__LAST_TL__ = lastTl
+          window.__CONTENT_TL__ = () => contentTl
+        }
+        // panel narrows; carousel left/width and content left/width follow via
+        // --panel-w (CSS). No separate x transforms on carousel/content.
+        // Driven deterministically by the master timeline time (the reveal
+        // tween already handles the 15 -> 60vw phase before this).
+        const phasePanelTicker = () => {
+          const t = trackTl.time()
+          if (t < phaseStartTime) return
+          const pLocal = Math.min((t - phaseStartTime) / (100 - phaseStartTime), 1)
+          setPanelW(60 + (PANEL_FINAL_VW - 60) * pLocal)
+        }
+        gsap.ticker.add(phasePanelTicker)
+        cleanups.push(() => gsap.ticker.remove(phasePanelTicker))
+        // carousel / items / inner content rise
+        lastTl.fromTo(carousel, { y: '100vh' }, { y: `${100 - 33.33 * 2}vh`, duration: u1, ease: 'none' }, 0)
+        lastTl.fromTo(innerContent, { y: 0 }, { y: '-33.33vh', duration: u1, ease: 'none' }, 0)
+        lastTl.from(carItems, { height: '66vh', duration: u1, ease: 'none' }, 0)
+        // stage 2: settle into the final frame
+        lastTl.to(carousel, { y: '0vh', duration: u2, ease: 'none' }, u1)
+        lastTl.to(innerContent, { y: '-66.66vh', duration: u2, ease: 'none' }, u1)
+        lastTl.to(carItems, {
           height: '37.5vh',
-          duration: 0.75,
+          duration: u2,
           ease: 'power1.inOut',
-          onStart: () => lastContentTl.play(),
-          onReverseComplete: () => lastContentTl.reverse(),
-        }, 1)
+          onStart: () => contentTl && contentTl.play(),
+          onReverseComplete: () => {
+            if (contentTl) {
+              contentTl.pause()
+              contentTl.reverse()
+            }
+          },
+        }, u1)
 
-        ScrollTrigger.create({
-          animation: lastTl,
-          containerAnimation: trackTl,
-          trigger: lastProject,
-          start: 'left 0%',
-          end: `left -${widthPin - adjust}%`,
-          scrub: 0,
-          invalidateOnRefresh: true,
-        })
+        const syncContentAfterRebuild = () => {
+          buildContentTl()
+          if (lastTl.time() >= u1 && contentTl) contentTl.play(0)
+        }
+        window.__REBUILD_CONTENT__ = syncContentAfterRebuild
+
+        trackTl.add(lastTl, phaseStartTime)
       }
 
-      /* 6. closing panel: content to measured 37.5% + flipMedia parallax */
-      if (cierre) {
-        const cierreContent = cierre.querySelector('.mod-scroll__cierre__content')
-        const cierreMedia = cierreContent.querySelector('.mod-scroll__cierre__content__image')
-
-        const cierreTl = gsap.timeline({ paused: true })
-        cierreTl.fromTo(cierreContent, { x: '0%' }, { x: `${CIERRE_X_END}%`, ease: 'none' }, 0)
-        ScrollTrigger.create({
-          animation: cierreTl,
-          containerAnimation: trackTl,
-          trigger: cierre,
-          start: 'left 0%',
-          end: `left -${CIERRE_X_END}%`,
-          scrub: 0,
-          invalidateOnRefresh: true,
-        })
-
-        // flipMedia upDown (reference main.js): up slides up, down media
-        // source parallaxes; both also enter from x -100%
-        const flipTl = gsap.timeline({ paused: true })
-        const dur = 1.5
-        flipTl.to(cierreMedia.querySelector('.flipMedia__media--up'), { y: '-105%', duration: dur, ease: 'power3.out' }, 0)
-        flipTl.from(cierreMedia.querySelector('.flipMedia__media--down .media__source'), { y: '-10%', duration: dur + 0.5, ease: 'power3.out' }, 0)
-        ScrollTrigger.create({
-          animation: flipTl,
-          containerAnimation: trackTl,
-          trigger: cierreContent,
-          start: 'left 100%',
-          end: 'left 0%',
-          scrub: 0.1,
-          invalidateOnRefresh: true,
-        })
-
-        const parallaxTl = gsap.timeline({ paused: true })
-        parallaxTl.from(cierreMedia.querySelectorAll(':scope > *'), { x: '-100%', ease: 'none' }, 0)
-        ScrollTrigger.create({
-          animation: parallaxTl,
-          containerAnimation: trackTl,
-          trigger: cierreContent,
-          start: 'left 100%',
-          end: 'left 0%',
-          scrub: 0.1,
-          invalidateOnRefresh: true,
-        })
-      }
-
-      /* 7. button rollovers (JS-driven, deterministic + reversible) */
+      /* 5. button rollovers (reference rollovers.js setRolloverBtnBg:
+          directional, entered-edge aware; --posX/--posY drive the ::before
+          fill, the label span slides 200% along the entry axis) */
       const btns = Array.from(sc.querySelectorAll('a.btn:not(.disabled)'))
       btns.forEach((btn) => {
-        const first = btn.querySelector('.btn--label > span:first-child')
-        const second = btn.querySelector('.btn--label > span:last-child')
-        if (!first || !second) return
-        const over = () => {
-          btn.classList.add('hover')
-          gsap.to(first, { yPercent: -100, duration: 0.4, ease: 'power3.inOut' })
-          gsap.to(second, { yPercent: 0, duration: 0.4, ease: 'power3.inOut' })
+        const sp = btn.querySelector(':scope > span')
+        if (!sp) return
+        const colorEnd = btn.classList.contains('btn--bg-inv') ? 'white' : 'black'
+        const dir = (e) => {
+          const rect = btn.getBoundingClientRect()
+          const fromLeft = e.clientX - rect.left
+          const fromRight = rect.right - e.clientX
+          const fromTop = e.clientY - rect.top
+          const fromBottom = rect.bottom - e.clientY
+          const minDistance = Math.min(fromLeft, fromRight, fromTop, fromBottom)
+          if (minDistance === fromLeft) return { pos: ['-102%', '102%', 0, 0], spanPos: ['200%', '-200%', 0, 0] }
+          if (minDistance === fromRight) return { pos: ['102%', '-102%', 0, 0], spanPos: ['-200%', '200%', 0, 0] }
+          if (minDistance === fromTop) return { pos: [0, 0, '-102%', '102%'], spanPos: [0, 0, '200%', '-200%'] }
+          return { pos: [0, 0, '102%', '-102%'], spanPos: [0, 0, '-200%', '200%'] }
         }
-        const out = () => {
-          btn.classList.remove('hover')
-          gsap.to(first, { yPercent: 0, duration: 0.4, ease: 'power3.inOut' })
-          gsap.to(second, { yPercent: 100, duration: 0.4, ease: 'power3.inOut' })
+        const over = (e) => {
+          const { pos, spanPos } = dir(e)
+          const dur = 0.33
+          const dur2 = 0.25
+          gsap.killTweensOf(btn)
+          gsap.killTweensOf(sp)
+          gsap.fromTo(sp, { x: 0, y: 0 }, { x: spanPos[0], y: spanPos[2], duration: dur, ease: 'power3.in' })
+          gsap.to(sp, { color: colorEnd, duration: dur, ease: 'power3.in' })
+          gsap.fromTo(btn, { '--posX': pos[0], '--posY': pos[2] }, { '--posX': '0%', '--posY': '0%', duration: dur2, delay: 0.1, ease: 'power3.in' })
+          gsap.fromTo(sp, { x: spanPos[1], y: spanPos[3] }, { x: 0, y: 0, duration: dur, delay: dur2, ease: 'power3.out' })
+        }
+        const out = (e) => {
+          const { pos, spanPos } = dir(e)
+          const dur = 0.33
+          const dur2 = 0.25
+          gsap.killTweensOf(btn)
+          gsap.killTweensOf(sp)
+          gsap.fromTo(sp, { x: 0, y: 0, color: colorEnd }, { x: spanPos[0], y: spanPos[2], duration: dur, ease: 'power3.in' })
+          gsap.to(sp, { color: '', duration: dur, ease: 'power3.in' })
+          gsap.fromTo(btn, { '--posX': '0%', '--posY': '0%' }, { '--posX': pos[1], '--posY': pos[3], duration: dur2, delay: 0.1, ease: 'power3.in' })
+          gsap.fromTo(sp, { x: spanPos[1], y: spanPos[3] }, { x: 0, y: 0, duration: dur, delay: dur2, ease: 'power3.out' })
         }
         btn.addEventListener('mouseenter', over)
         btn.addEventListener('mouseleave', out)
@@ -465,10 +664,48 @@ export default function ScrollSection() {
         })
       })
 
+      // "See all" tile: arrow animation (fills white + grows) on hover
+      const seeAll = Array.from(sc.querySelectorAll('.last-item__carousel__item--link'))[0]
+      if (seeAll) {
+        const arrow = seeAll.querySelector('.last-item__carousel__item__arrow')
+        const paths = arrow ? Array.from(arrow.querySelectorAll('path')) : []
+        const overA = () => {
+          gsap.to(paths, { fill: '#FFF', duration: 0.33, ease: 'power3.in' })
+          gsap.to(arrow, { scale: 2, x: '-8px', y: '8px', duration: 0.33, ease: 'power3.in' })
+        }
+        const outA = () => {
+          gsap.to(paths, { fill: '#000', duration: 0.33, ease: 'power3.in' })
+          gsap.to(arrow, { scale: 1.5, x: '0px', y: '0px', duration: 0.33, ease: 'power3.in' })
+        }
+        seeAll.addEventListener('mouseenter', overA)
+        seeAll.addEventListener('mouseleave', outA)
+        cleanups.push(() => {
+          seeAll.removeEventListener('mouseenter', overA)
+          seeAll.removeEventListener('mouseleave', outA)
+        })
+      }
+
+      // In-place relayout after a significant resize would require rebuilding
+      // the whole GSAP master timeline / trigger network; the safe, exact
+      // approach is a controlled reload that resumes at the same scroll
+      // progress (used by the resize acceptance test as well).
       const onResize = () => {
-        measureFinalDist()
-        wrap.style.height = `${window.innerHeight + finalDist}px`
-        ScrollTrigger.refresh()
+        if (!built) return
+        const prev = (() => {
+          try {
+            const s = window.__SCROLL_P__ ? window.__SCROLL_P__() : null
+            return s && Number.isFinite(s.p) ? s.p : null
+          } catch {
+            return null
+          }
+        })()
+        try {
+          if (prev !== null) sessionStorage.setItem('interiorResume', String(prev))
+          else sessionStorage.removeItem('interiorResume')
+        } catch {
+          /* private mode */
+        }
+        window.location.reload()
       }
       window.addEventListener('resize', onResize)
       cleanups.push(() => window.removeEventListener('resize', onResize))
@@ -487,19 +724,85 @@ export default function ScrollSection() {
             wrapH: wrap.offsetHeight,
           }
         }
+        window.__TRACK_TL__ = trackTl
+        window.__FINAL_DIST__ = () => finalDist
+        window.__NAT_X__ = () => lastNatX
       }
     }
 
     const recalc = () => {
       if (!built) build()
+      measureFinalDist()
+      if (termsEl) gsap.set(termsEl, { width: lastTermsW })
+      wrap.style.height = `${window.innerHeight + finalDist}px`
       ScrollTrigger.refresh()
+      if (typeof window.__REBUILD_CONTENT__ === 'function') window.__REBUILD_CONTENT__()
+    }
+    // resume a previous scroll progress after a resize/reload (see onResize)
+    const resumeP = (() => {
+      try {
+        const v = sessionStorage.getItem('interiorResume')
+        sessionStorage.removeItem('interiorResume')
+        return v !== null && Number.isFinite(Number(v)) ? Number(v) : null
+      } catch {
+        return null
+      }
+    })()
+    let resumeApplied = false
+    const applyResume = () => {
+      if (resumeP === null || resumeApplied) return
+      resumeApplied = true
+      setTimeout(() => {
+        try {
+          const w = document.querySelector('.mod-scroll-wrap')
+          if (!w) return
+          const r = w.getBoundingClientRect()
+          const top = r.top + window.scrollY
+          const rng = { start: top, end: top + (w.offsetHeight - window.innerHeight) }
+          const y = Math.round(rng.start + resumeP * (rng.end - rng.start))
+          const L = window.__lenis
+          if (L) L.stop()
+          window.scrollTo(0, y)
+        } catch (e) {
+          /* ignore */
+        }
+      }, 400)
+    }
+    // re-run until the measured distance stabilizes (fonts/images can still
+    // settle after the first recalc and change the track's final width)
+    const stabilize = (remaining = 6) => {
+      const before = finalDist
+      recalc()
+      applyResume()
+      if (remaining > 0 && Math.abs(finalDist - before) > 0.5) {
+        setTimeout(() => stabilize(remaining - 1), 300)
+      }
     }
     recalc()
-    document.fonts.ready.then(recalc)
-
-    const onLoad = () => recalc()
+    document.fonts.ready.then(() => stabilize())
+    const onLoad = () => stabilize()
     window.addEventListener('load', onLoad)
     cleanups.push(() => window.removeEventListener('load', onLoad))
+
+    // The preloader animates `.page` with a scale transform; any
+    // ScrollTrigger.refresh() that runs while that transform is active
+    // measures corrupt start/end values that never recover. Wait until the
+    // transform is cleared, then run one final refresh so the trigger
+    // geometry is rebuilt from clean layout.
+    let pageCleanTimer = null
+    const tryPageCleanRefresh = () => {
+      const pg = document.querySelector('.page')
+      if (!pg) return
+      const t = getComputedStyle(pg).transform
+      if (t === 'none' || t === '') {
+        ScrollTrigger.refresh()
+        if (typeof window.__REBUILD_CONTENT__ === 'function') window.__REBUILD_CONTENT__()
+        return
+      }
+      pageCleanTimer = setTimeout(tryPageCleanRefresh, 400)
+    }
+    tryPageCleanRefresh()
+    cleanups.push(() => clearTimeout(pageCleanTimer))
 
     return () => {
       cleanups.forEach((fn) => fn())
@@ -518,7 +821,6 @@ export default function ScrollSection() {
             <div
               key={term.num}
               className="mod-scroll__terms__term"
-              style={i === 0 ? { paddingLeft: '6.05vw' } : i === 2 ? { paddingLeft: '10.09vw' } : { paddingRight: '1.51vw' }}
             >
               {/* per-term paragraph: shown on desktop (>=950) */}
               <div className="mod-scroll__terms__term__text f-izmir t-parrafo d-none d-md-block">
@@ -553,7 +855,6 @@ export default function ScrollSection() {
                 src={term.img}
                 alt=""
                 decoding="async"
-                className={i === 0 ? 'on' : i === 1 ? 'prev' : ''}
               />
             ))}
           </div>
@@ -598,109 +899,114 @@ export default function ScrollSection() {
                     <ProjectButton item={p} />
                   </div>
                   <div className={`mod-scroll__projects__item__text__title t-upper ${p.titleFont} t-titulo-xxl`}>
-                    {p.title}
+                    <div>{p.title}</div>
                   </div>
                 </div>
               </div>
             </div>
           ))}
 
-          {/* last panel: carousel + text */}
-          <div
-            className={`mod-scroll__projects__item last-item ${LAST_PROJECT.bg}`}
-            style={{ width: '60vw' }}
-          >
-            <div className="mod-scroll__projects__item__content">
-              <div className="media mod-scroll__projects__item__image noAnimate no-general-anim" data-delay="">
-                <div className="media__wrap-source image" style={{ aspectRatio: LAST_PROJECT.ratio }}>
-                  <img
-                    className="media__source w-100"
-                    src={LAST_PROJECT.img}
-                    alt=""
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </div>
-              </div>
+          {/* ---------- panel 05 (Pol43) + vertical ending ---------- */}
+          {(() => {
+            const p = LAST_ITEM.panel
+            return (
+              <div
+                key={p.num}
+                className={`mod-scroll__projects__item last-item last-item-group ${p.bg}`}
+                style={{ '--panel-w': '15vw' }}
+              >
+                <div className="last-item__panel">
+                  <div className="mod-scroll__projects__item__content">
+                    <div className="media mod-scroll__projects__item__image noAnimate no-general-anim" data-delay="">
+                      <div className="media__wrap-source image" style={{ aspectRatio: p.ratio }}>
+                        <img
+                          className="media__source w-100"
+                          src={p.img}
+                          alt=""
+                          loading="lazy"
+                          decoding="async"
+                          style={{ height: '87vh' }}
+                        />
+                      </div>
+                    </div>
 
-              <div className="mod-scroll__projects__item__text">
-                <div className="mod-scroll__projects__item__text__data">
-                  <div className="f-edit t-parrafo-l"><span>{LAST_PROJECT.year}</span></div>
-                  <div className="f-izmir t-parrafo-l"><span>{LAST_PROJECT.place}</span></div>
-                  <div className="f-izmir t-parrafo data-number">{LAST_PROJECT.num}</div>
-                  <ProjectButton item={LAST_PROJECT} />
-                </div>
-                <div className={`mod-scroll__projects__item__text__title t-upper ${LAST_PROJECT.titleFont} t-titulo-xxl`}>
-                  {LAST_PROJECT.title}
-                </div>
-              </div>
-
-              <div className="last-item__carousel" style={{ transform: 'translateY(100vh)' }}>
-                {LAST_PROJECT.carousel.map((c, i) => (
-                  <div key={i} className="last-item__carousel__item" style={{ height: '66vh' }}>
-                    <div className="media last-item__carousel__item__image noAnimate no-general-anim" data-delay="">
-                      <div className="media__wrap-source image" style={{ aspectRatio: c.ratio }}>
-                        <img className="media__source w-100" src={c.img} alt="" loading="lazy" decoding="async" />
+                    <div className="mod-scroll__projects__item__text">
+                      <div className="mod-scroll__projects__item__text__data">
+                        <div className="f-edit t-parrafo-l"><span>{p.year}</span></div>
+                        <div className="f-izmir t-parrafo-l"><span>{p.place}</span></div>
+                        <div className="f-izmir t-parrafo data-number">{p.num}</div>
+                        <ProjectButton item={p} />
+                      </div>
+                      <div className={`mod-scroll__projects__item__text__title t-upper ${p.titleFont} t-titulo-xxl`}>
+                        <div>{p.title}</div>
                       </div>
                     </div>
                   </div>
-                ))}
-                <a
-                  href="https://normalisboring.es/proyectos/"
-                  className="last-item__carousel__item last-item__carousel__item--link btn btn--bg btn--bg-inv btn--bg-blue bg-blue f-edit"
-                >
-                  <svg
-                    className="last-item__carousel__item__arrow btn__image"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="28"
-                    height="25.815"
-                    viewBox="0 0 28 25.815"
-                  >
-                    <g id="Grupo_12667" data-name="Grupo 12667" transform="translate(-7871.062 19814.479)">
-                      <path id="Línea_6" data-name="Línea 6" d="M16.962-.067H-1V-1H16.962Z" transform="translate(7881.317 -19813.479)" />
-                      <path id="Línea_7" data-name="Línea 7" d="M-.067,17.665H-1V-1h.933Z" transform="translate(7899.129 -19813.479)" />
-                      <path id="Línea_8" data-name="Línea 8" d="M-.045,24.641l-.633-.686L26.069-.735l.633.686Z" transform="translate(7871.74 -19813.305)" />
-                    </g>
-                  </svg>
-                  <span className="last-item__carousel__item__text t-titulo-l">View all</span>
-                </a>
-              </div>
+                </div>
 
-              <div className="last-item__content" style={{ width: '40vw', transform: 'translateX(60vw)' }}>
-                <div className="last-item__content__wrap">
-                  <div className="last-item__content__section f-edit t-parrafo">Projects</div>
-                  <div className="last-item__content__title">
-                    {LAST_PROJECT.titleLines.map((line, i) => (
-                      <div key={i} className={`line f-regular t-titulo-xxl t-upper lh-less col-12 align-left ${line.align}`}>
-                        {line.text}
+                {/* carousel: two project images + "See all" link tile */}
+                <div className="last-item__carousel">
+                  {LAST_ITEM.carouselImgs.map((src) => (
+                    <div key={src} className="last-item__carousel__item">
+                      <div className="media last-item__carousel__item__image noAnimate no-general-anim" data-delay="">
+                        <div className="media__wrap-source image">
+                          <img
+                            className="media__source w-100"
+                            src={src}
+                            alt=""
+                            loading="lazy"
+                            decoding="async"
+                          />
+                        </div>
                       </div>
-                    ))}
-                  </div>
-                  <div className="last-item__content__text">
-                    <p>{LAST_PROJECT.text}</p>
-                  </div>
+                    </div>
+                  ))}
+                  <a
+                    href={LAST_ITEM.linkHref}
+                    className="last-item__carousel__item last-item__carousel__item--link btn btn--bg btn--bg-inv btn--bg-blue bg-blue f-edit"
+                  >
+                    <svg
+                      className="last-item__carousel__item__arrow btn__image"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="28"
+                      height="25.815"
+                      viewBox="0 0 28 25.815"
+                    >
+                      <g transform="translate(-7871.062 19814.479)">
+                        <path d="M16.962-.067H-1V-1H16.962Z" transform="translate(7881.317 -19813.479)" />
+                        <path d="M-.067,17.665H-1V-1h.933Z" transform="translate(7899.129 -19813.479)" />
+                        <path d="M-.045,24.641l-.633-.686L26.069-.735l.633.686Z" transform="translate(7871.74 -19813.305)" />
+                      </g>
+                    </svg>
+                    <span className="btn--label">
+                      <span className="last-item__carousel__item__text t-titulo-l">{LAST_ITEM.linkLabel}</span>
+                      <span aria-hidden="true" className="last-item__carousel__item__text t-titulo-l">{LAST_ITEM.linkLabel}</span>
+                    </span>
+                  </a>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
 
-        {/* ---------- C) CLOSING PANEL ---------- */}
-        <div className="mod-scroll__cierre bg-red c-black">
-          <div className="mod-scroll__cierre__content">
-            <div className="mod-scroll__cierre__content__image flipMedia flipMedia--upDown">
-              <div className="media flipMedia__media flipMedia__media--down noAspect noAnimate no-general-anim" data-delay="">
-                <div className="media__wrap-source image">
-                  <img className="media__source w-100" src={CIERRE.down} alt="" loading="lazy" decoding="async" />
+                {/* white text block (label, 4-line title, paragraph) */}
+                <div className="last-item__content">
+                  <div className="last-item__content__wrap">
+                    <div className="last-item__content__section f-edit t-parrafo">Projects</div>
+                    <div className="last-item__content__title">
+                      {LAST_ITEM.titleLines.map((line, i) => (
+                        <div
+                          key={i}
+                          className={`line f-regular t-titulo-xxl t-upper lh-less w-100 align-left ${i > 1 ? 't-right' : 't-left'}`}
+                        >
+                          {i === 1 ? <>THAT <span /><span /><span /><span /> PLEASURE</> : line}
+                        </div>
+                      ))}
+                    </div>
+                    <div className="last-item__content__text">
+                      <p>{LAST_ITEM.paragraph}</p>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div className="media flipMedia__media flipMedia__media--up noAspect noAnimate no-general-anim" data-delay="">
-                <div className="media__wrap-source image">
-                  <img className="media__source w-100" src={CIERRE.up} alt="" loading="lazy" decoding="async" />
-                </div>
-              </div>
-            </div>
-          </div>
+            )
+          })()}
         </div>
       </div>
     </div>

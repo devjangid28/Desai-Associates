@@ -1,0 +1,206 @@
+{
+ "all": [
+  {
+   "name": "https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js?ver=1.0",
+   "size": 29429,
+   "initiator": "script"
+  },
+  {
+   "name": "https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js?ver=1.0",
+   "size": 17590,
+   "initiator": "script"
+  },
+  {
+   "name": "https://unpkg.com/lenis@1.3.1/dist/lenis.min.js?ver=1.0",
+   "size": 0,
+   "initiator": "script"
+  },
+  {
+   "name": "https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.5/swiper-bundle.min.js?ver=1.0",
+   "size": 34909,
+   "initiator": "script"
+  },
+  {
+   "name": "https://www.youtube.com/player_api?ver=1.0",
+   "size": 0,
+   "initiator": "script"
+  },
+  {
+   "name": "https://unpkg.com/swup@4?ver=1.0",
+   "size": 0,
+   "initiator": "script"
+  },
+  {
+   "name": "https://normalisboring.es/wp-content/themes/normalisboring25/js/gsap/ScrollSmoother.min.js?ver=1.0",
+   "size": 5858,
+   "initiator": "script"
+  },
+  {
+   "name": "https://normalisboring.es/wp-content/plugins/cookie-law-info/lite/frontend/js/script.min.js?ver=3.3.1",
+   "size": 7284,
+   "initiator": "script"
+  },
+  {
+   "name": "https://normalisboring.es/wp-content/themes/normalisboring25/js/gsap/SplitText.min.js?ver=1.0",
+   "size": 5585,
+   "initiator": "script"
+  },
+  {
+   "name": "https://normalisboring.es/wp-content/themes/normalisboring25/js/gsap/MorphSVGPlugin.min.js?ver=1.0",
+   "size": 7873,
+   "initiator": "script"
+  },
+  {
+   "name": "https://normalisboring.es/wp-content/themes/normalisboring25/js/preloader.js?ver=994",
+   "size": 1708,
+   "initiator": "script"
+  },
+  {
+   "name": "https://normalisboring.es/wp-includes/js/dist/i18n.min.js?ver=1dfe7db3940c23ea9216",
+   "size": 2792,
+   "initiator": "script"
+  },
+  {
+   "name": "https://normalisboring.es/wp-includes/js/dist/hooks.min.js?ver=f0f188028580e8dc1255",
+   "size": 2160,
+   "initiator": "script"
+  },
+  {
+   "name": "https://normalisboring.es/wp-content/plugins/contact-form-7/includes/swv/js/index.js?ver=6.1",
+   "size": 3803,
+   "initiator": "script"
+  },
+  {
+   "name": "https://normalisboring.es/wp-content/plugins/contact-form-7/includes/js/index.js?ver=6.1",
+   "size": 4565,
+   "initiator": "script"
+  },
+  {
+   "name": "https://normalisboring.es/wp-content/themes/normalisboring25/js/root.js?ver=380",
+   "size": 1547,
+   "initiator": "script"
+  },
+  {
+   "name": "https://normalisboring.es/wp-content/themes/normalisboring25/js/clicks.js?ver=958",
+   "size": 4034,
+   "initiator": "script"
+  },
+  {
+   "name": "https://normalisboring.es/wp-content/themes/normalisboring25/js/rollovers.js?ver=783",
+   "size": 3505,
+   "initiator": "script"
+  },
+  {
+   "name": "https://normalisboring.es/wp-content/themes/normalisboring25/js/main.js?ver=701",
+   "size": 5480,
+   "initiator": "script"
+  },
+  {
+   "name": "https://normalisboring.es/wp-content/themes/normalisboring25/js/animations.js?ver=106",
+   "size": 5519,
+   "initiator": "script"
+  },
+  {
+   "name": "https://normalisboring.es/wp-content/themes/normalisboring25/js/scroll.js?ver=621",
+   "size": 6109,
+   "initiator": "script"
+  },
+  {
+   "name": "https://www.youtube.com/s/player/fad7e4e9/www-widgetapi.vflset/www-widgetapi.js",
+   "size": 0,
+   "initiator": "script"
+  }
+ ],
+ "kept": [
+  {
+   "name": "https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js?ver=1.0",
+   "size": 72304,
+   "hasMod": false,
+   "hasST": true,
+   "hasSm": false,
+   "hasL": false,
+   "file": "gsap.min.js_ver_1.0.js"
+  },
+  {
+   "name": "https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js?ver=1.0",
+   "size": 43974,
+   "hasMod": false,
+   "hasST": true,
+   "hasSm": true,
+   "hasL": false,
+   "file": "ScrollTrigger.min.js_ver_1.0.js"
+  },
+  {
+   "name": "https://unpkg.com/lenis@1.3.1/dist/lenis.min.js?ver=1.0",
+   "size": 16185,
+   "hasMod": false,
+   "hasST": false,
+   "hasSm": false,
+   "hasL": true,
+   "file": "lenis.min.js_ver_1.0.js"
+  },
+  {
+   "name": "https://normalisboring.es/wp-content/themes/normalisboring25/js/gsap/ScrollSmoother.min.js?ver=1.0",
+   "size": 13498,
+   "hasMod": false,
+   "hasST": true,
+   "hasSm": true,
+   "hasL": false,
+   "file": "ScrollSmoother.min.js_ver_1.0.js"
+  },
+  {
+   "name": "https://normalisboring.es/wp-content/themes/normalisboring25/js/preloader.js?ver=994",
+   "size": 4390,
+   "hasMod": true,
+   "hasST": false,
+   "hasSm": false,
+   "hasL": false,
+   "file": "preloader.js_ver_994.js"
+  },
+  {
+   "name": "https://normalisboring.es/wp-content/themes/normalisboring25/js/root.js?ver=380",
+   "size": 3213,
+   "hasMod": true,
+   "hasST": true,
+   "hasSm": true,
+   "hasL": false,
+   "file": "root.js_ver_380.js"
+  },
+  {
+   "name": "https://normalisboring.es/wp-content/themes/normalisboring25/js/clicks.js?ver=958",
+   "size": 22645,
+   "hasMod": true,
+   "hasST": false,
+   "hasSm": false,
+   "hasL": false,
+   "file": "clicks.js_ver_958.js"
+  },
+  {
+   "name": "https://normalisboring.es/wp-content/themes/normalisboring25/js/main.js?ver=701",
+   "size": 24270,
+   "hasMod": true,
+   "hasST": true,
+   "hasSm": false,
+   "hasL": true,
+   "file": "main.js_ver_701.js"
+  },
+  {
+   "name": "https://normalisboring.es/wp-content/themes/normalisboring25/js/animations.js?ver=106",
+   "size": 32920,
+   "hasMod": true,
+   "hasST": true,
+   "hasSm": false,
+   "hasL": false,
+   "file": "animations.js_ver_106.js"
+  },
+  {
+   "name": "https://normalisboring.es/wp-content/themes/normalisboring25/js/scroll.js?ver=621",
+   "size": 36080,
+   "hasMod": true,
+   "hasST": true,
+   "hasSm": false,
+   "hasL": false,
+   "file": "scroll.js_ver_621.js"
+  }
+ ]
+}

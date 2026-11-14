@@ -56,7 +56,6 @@
 
   --black: #000000;
   --beige: #ece4da;
-  --red: #db5c59;
   --blue: #c7d7e9;
   --grey: #707070;
 
@@ -108,6 +107,9 @@
   font-weight: 200;
 }
 
+.mod-scroll .t-left {
+  text-align: left;
+}
 .mod-scroll .t-right {
   text-align: right;
 }
@@ -162,9 +164,6 @@
 .mod-scroll .bg-beige {
   background: var(--beige);
 }
-.mod-scroll .bg-red {
-  background: var(--red);
-}
 .mod-scroll .bg-blue {
   background: var(--blue);
 }
@@ -213,30 +212,7 @@
   object-position: center center;
 }
 
-.mod-scroll .flipMedia {
-  position: relative;
-  display: block;
-  overflow: clip;
-}
-.mod-scroll .flipMedia__media {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-}
-.mod-scroll .flipMedia__media .media__wrap-source,
-.mod-scroll .flipMedia__media .media__source {
-  position: relative;
-  height: 100%;
-  object-fit: cover;
-  object-position: center center;
-}
-.mod-scroll .flipMedia.flipMedia--upDown .flipMedia__media--down .media__wrap-source {
-  height: 110%;
-}
-
-/* ---------------- buttons (rollover) ---------------- */
+/* ---------------- buttons (rollover, reference model) ---------------- */
 
 .mod-scroll .btn {
   cursor: pointer;
@@ -246,37 +222,32 @@
   opacity: 0.5;
 }
 .mod-scroll .btn.disabled::before {
-  transform: translate(-101%, 0) !important;
+  transform: translate(-101%, -101%) !important;
 }
-.mod-scroll .btn.disabled .btn--label > span {
-  transform: translateY(0) !important;
+.mod-scroll .btn.disabled > span {
+  color: inherit !important;
+  transform: translate(0, 0) !important;
 }
 .mod-scroll .btn--bg {
   position: relative;
   background: var(--black);
   color: white;
-  padding: 0.467em 1.167em;
+  padding: calc(0.6em - 2px) calc(1.3em - 2px);
   border: 1.5px solid var(--black);
-  border-radius: 23.25px;
+  border-radius: var(--b-radius);
   white-space: nowrap;
   overflow: hidden;
   text-decoration: none;
   display: inline-block;
+  --posX: -101%;
+  --posY: -101%;
+  --b-radius: calc((0.65em - 2px) * 3);
 }
-.mod-scroll .btn--bg .btn--label {
+.mod-scroll .btn--bg > span {
   position: relative;
   display: block;
   z-index: 2;
   overflow-y: clip;
-}
-.mod-scroll .btn--bg .btn--label > span {
-  display: block;
-  position: relative;
-}
-.mod-scroll .btn--bg .btn--label > span:last-child {
-  position: absolute;
-  inset: 0 auto auto 0;
-  transform: translateY(100%);
 }
 .mod-scroll .btn--bg::before {
   content: '';
@@ -287,17 +258,9 @@
   top: 0%;
   left: 0;
   background: var(--beige);
-  border-radius: 23.25px;
+  border-radius: var(--b-radius);
   z-index: 1;
-  transform: translate(-101%, 0);
-}
-.mod-scroll .btn--bg.hover::before,
-.mod-scroll .btn--bg:hover::before {
-  transform: translate(0%, 0);
-}
-.mod-scroll .btn--bg.hover,
-.mod-scroll .btn--bg:hover {
-  color: white;
+  transform: translate(var(--posX), var(--posY));
 }
 .mod-scroll .btn--bg-inv {
   background: var(--beige);
@@ -311,9 +274,6 @@
 }
 .mod-scroll .btn--bg-inv.btn--bg-blue {
   background: var(--blue);
-}
-.mod-scroll .btn--bg-inv.btn--bg-red {
-  background: var(--red);
 }
 .mod-scroll .btn--bg-inv.btn--bg-beige {
   background: var(--beige);
@@ -398,8 +358,11 @@
   left: 0;
   top: 0;
 }
-.mod-scroll__projects__item__text__title .char,
-.mod-scroll .last-item__content__title .char {
+.mod-scroll__projects__item__text__title .char {
+  display: inline-block;
+  will-change: transform;
+}
+.mod-scroll__projects__item__text__title .word {
   display: inline-block;
   will-change: transform;
 }
@@ -448,7 +411,7 @@
   display: flex;
   justify-content: flex-start;
   align-items: flex-end;
-  background: var(--beige);
+  background: white;
 }
 
 .mod-scroll__section {
@@ -545,19 +508,40 @@
   right: var(--margin);
 }
 
-/* last panel */
-.mod-scroll__projects .last-item {
+/* ---------------- C) LAST ITEM (project 05 + vertical ending) ---------------- */
+
+/* One flex sibling: the grey panel, the carousel and the white content block
+   are bound together in this group. It moves only with the track; the panel's
+   width drives the carousel width and the content offset via --panel-w. */
+.mod-scroll__projects .last-item-group {
+  position: relative;
+  flex-shrink: 0;
   overflow: unset;
+  --panel-w: 60vw;
+  width: var(--panel-w);
+  height: var(--100vh);
+  will-change: transform;
 }
-.mod-scroll__projects .last-item__carousel {
+
+.mod-scroll__projects .last-item-group .last-item__panel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--grey);
+}
+
+.mod-scroll__projects .last-item-group .last-item__carousel {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
+  width: var(--panel-w);
+  height: 100%;
   transform: translateY(var(--100vh));
   z-index: 3;
 }
-.mod-scroll__projects .last-item__carousel__item {
+
+.mod-scroll__projects .last-item-group .last-item__carousel__item {
   position: relative;
   width: 100%;
   height: 33.3333vh;
@@ -565,7 +549,8 @@
   place-items: center;
   overflow: hidden;
 }
-.mod-scroll__projects .last-item__carousel__item__image {
+
+.mod-scroll__projects .last-item-group .last-item__carousel__item__image {
   position: absolute;
   top: 50%;
   left: 0;
@@ -573,12 +558,43 @@
   display: block;
   width: 100%;
 }
-.mod-scroll__projects .last-item__carousel__item__image .media__source {
+
+.mod-scroll__projects .last-item-group .last-item__carousel__item__image .media__wrap-source {
+  width: 100%;
+}
+
+.mod-scroll__projects .last-item-group .last-item__carousel__item__image .media__source {
   object-fit: cover;
   object-position: center center;
   display: block;
+  width: 100%;
+  height: auto;
 }
-.mod-scroll__projects .last-item__carousel__item__arrow {
+
+.mod-scroll__projects .last-item-group .last-item__carousel__item--link {
+  height: 25vh;
+  padding: 0;
+  border: unset;
+  border-radius: unset;
+}
+
+.mod-scroll__projects .last-item-group .last-item__carousel__item--link::before {
+  border: unset;
+  border-radius: unset;
+}
+
+.mod-scroll__projects .last-item-group .last-item__carousel__item--link .btn--label {
+  display: grid;
+  place-items: center;
+  position: absolute;
+  inset: 0;
+}
+
+.mod-scroll__projects .last-item-group .last-item__carousel__item--link .btn--label > span[aria-hidden="true"] {
+  display: none;
+}
+
+.mod-scroll__projects .last-item-group .last-item__carousel__item__arrow {
   position: absolute;
   top: 0.8rem;
   right: 0.8rem;
@@ -586,30 +602,24 @@
   transform-origin: top right;
   z-index: 2;
 }
-.mod-scroll__projects .last-item__carousel__item--link {
-  height: 25vh;
-  padding: 0;
-  border: unset;
-  border-radius: unset;
-  display: grid;
-  place-items: center;
+
+.mod-scroll__projects .last-item-group .last-item__carousel__item__arrow path {
+  fill: #000;
 }
-.mod-scroll__projects .last-item__carousel__item--link::before {
-  border: unset;
-  border-radius: unset;
-}
-.mod-scroll__projects .last-item__content {
+
+.mod-scroll__projects .last-item-group .last-item__content {
   position: absolute;
   top: 0;
+  left: var(--panel-w);
+  width: calc(100vw - var(--panel-w));
   height: var(--100vh);
   background: white;
   z-index: 1;
 }
-.mod-scroll__projects .last-item__content__wrap {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 57.5vw;
+
+.mod-scroll__projects .last-item-group .last-item__content__wrap {
+  position: relative;
+  width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -618,51 +628,46 @@
   padding: var(--wrapper-padd);
   gap: var(--grid-gap);
 }
-.mod-scroll__projects .last-item__content__section {
+
+.mod-scroll__projects .last-item-group .last-item__content__section {
   position: absolute;
   top: var(--wrapper-padd);
 }
-.mod-scroll__projects .last-item__content__title {
+
+.mod-scroll__projects .last-item-group .last-item__content__title {
   width: 100%;
 }
-.mod-scroll__projects .last-item__content__title .line {
+
+.mod-scroll__projects .last-item-group .last-item__content__title .line {
   overflow: clip;
 }
-.mod-scroll__projects .last-item__content__text {
+
+.mod-scroll__projects .last-item-group .last-item__content__title .char {
+  display: inline-block;
+  will-change: transform;
+}
+
+.mod-scroll__projects .last-item-group .last-item__content__text {
+  font-size: var(--titulo);
+  line-height: var(--titulo-lh);
+  font-family: var(--f-edit);
+  width: 100%;
+}
+
+.mod-scroll__projects .last-item-group .last-item__content__text p {
   font-size: var(--titulo);
   line-height: var(--titulo-lh);
   font-family: var(--f-edit);
 }
-.mod-scroll__projects .last-item__content__text p {
-  font-size: var(--titulo);
-  line-height: var(--titulo-lh);
-  font-family: var(--f-edit);
-}
-.mod-scroll__projects .last-item__content__text p .line {
+
+.mod-scroll__projects .last-item-group .last-item__content__text p .line {
   overflow: clip;
 }
 
-/* ---------------- closing panel ---------------- */
-
-.mod-scroll__cierre {
-  z-index: 15;
-  width: 150vw;
-  height: var(--100vh);
-  flex-shrink: 0;
-}
-.mod-scroll__cierre__content {
-  position: relative;
-  width: 100vw;
-  height: var(--100vh);
-  display: grid;
-  place-items: center;
-}
-.mod-scroll__cierre__content__image {
-  position: relative;
-  display: block;
-  width: calc((99.9vw - var(--wrapper-padd) * 2 - var(--grid-gap) * 11) / 12 * 8 + var(--grid-gap) * 7);
-  max-width: 90%;
-  aspect-ratio: 1226/689;
+.mod-scroll__projects .last-item-group .last-item__content__text p .line > span {
+  display: inline-block;
+  width: 100%;
+  will-change: transform;
 }
 
 /* ---------------- responsive ---------------- */
@@ -795,23 +800,6 @@
     height: 55svh;
   }
 
-  .mod-scroll__projects .last-item__carousel__item {
-    height: 40vh;
-  }
-  .mod-scroll__projects .last-item__carousel__item--link {
-    height: 20vh;
-  }
-  .mod-scroll__projects .last-item__content__title {
-    margin-bottom: 2rem;
-  }
-  .mod-scroll__projects .last-item__content__wrap {
-    gap: 0;
-    padding-bottom: 1.5rem;
-  }
-  .mod-scroll__cierre__content__image {
-    max-width: unset;
-    width: calc(100% - var(--wrapper-padd) * 3);
-  }
 }
 
 /* ---------------- prefers-reduced-motion fallback: vertical stack ---------------- */
@@ -874,27 +862,46 @@
 .mod-scroll.ms-stack .mod-scroll__projects__item__text {
   height: 30svh;
 }
-.mod-scroll.ms-stack .last-item__carousel {
-  position: relative;
-  transform: translateY(0vh);
-}
-.mod-scroll.ms-stack .last-item__content {
-  position: relative;
+.mod-scroll.ms-stack .mod-scroll__projects .last-item-group {
+  overflow: hidden;
   height: auto;
+  width: 100%;
 }
-.mod-scroll.ms-stack .last-item__content__wrap {
-  position: relative;
+.mod-scroll.ms-stack .mod-scroll__projects .last-item-group .last-item__panel {
   width: 100%;
   height: auto;
 }
-.mod-scroll.ms-stack .last-item__content__section {
+.mod-scroll.ms-stack .mod-scroll__projects .last-item-group .last-item__carousel {
   position: relative;
-  top: auto;
-}
-.mod-scroll.ms-stack .mod-scroll__cierre {
+  transform: none;
+  display: flex;
+  flex-direction: column;
   width: 100%;
 }
-.mod-scroll.ms-stack .mod-scroll__cierre__content {
+.mod-scroll.ms-stack .mod-scroll__projects .last-item-group .last-item__carousel__item {
+  height: 40vh;
+}
+.mod-scroll.ms-stack .mod-scroll__projects .last-item-group .last-item__carousel__item--link {
+  height: 20vh;
+}
+.mod-scroll.ms-stack .mod-scroll__projects .last-item-group .last-item__content {
+  position: relative;
+  left: 0;
+  width: 100%;
   height: auto;
-  padding: 2.4rem 0;
+}
+.mod-scroll.ms-stack .mod-scroll__projects .last-item-group .last-item__content__wrap {
+  position: relative;
+  width: 100%;
+  height: auto;
+  padding: 2rem var(--wrapper-padd);
+  gap: 1.2rem;
+}
+.mod-scroll.ms-stack .mod-scroll__projects .last-item-group .last-item__content__section {
+  position: absolute;
+  top: var(--wrapper-padd);
+}
+.mod-scroll.ms-stack .mod-scroll__projects .last-item-group .last-item__content__title,
+.mod-scroll.ms-stack .mod-scroll__projects .last-item-group .last-item__content__text {
+  max-width: 100%;
 }

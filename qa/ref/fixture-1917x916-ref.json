@@ -1,0 +1,44 @@
+{
+ "site": "ref",
+ "introLeftVw": 83,
+ "panel1": {
+  "leftVw": 109.1,
+  "widthVw": 15,
+  "imgHvh": 87
+ },
+ "panel2": {
+  "leftVw": 124.1,
+  "widthVw": 15
+ },
+ "p1Text": {
+  "yearF": 27.95,
+  "btnOp": 0,
+  "chars": 0
+ },
+ "introBg": "rgba(0, 0, 0, 0)",
+ "introLines": [
+  {
+   "f": 0
+  },
+  {
+   "f": 0
+  },
+  {
+   "f": 0
+  },
+  {
+   "f": 0
+  },
+  {
+   "f": 0
+  },
+  {
+   "f": 0
+  }
+ ],
+ "introLabel": {
+  "f": -13.98
+ },
+ "scrollY": 4800,
+ "fileName": "ref"
+}

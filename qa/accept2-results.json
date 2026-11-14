@@ -1,0 +1,232 @@
+[
+ {
+  "t": "T1 1917x916 intro left 38.4vw",
+  "ok": true,
+  "detail": "il=38.37"
+ },
+ {
+  "t": "T1 1917x916 p1 left 64.5 (+-1.5)",
+  "ok": true,
+  "detail": "p1L=64.44"
+ },
+ {
+  "t": "T1 1917x916 p1 width 21.1 (+-1.5)",
+  "ok": true,
+  "detail": "p1W=21.05"
+ },
+ {
+  "t": "T1 1917x916 p1 imgH 84.5 (+-2)",
+  "ok": true,
+  "detail": "p1H=84.26"
+ },
+ {
+  "t": "T1 1917x916 p2 left 85.6 (+-1.5)",
+  "ok": true,
+  "detail": "p2L=85.49"
+ },
+ {
+  "t": "T1 1917x916 p2 width 15 (+-1.5)",
+  "ok": true,
+  "detail": "p2W=15.00"
+ },
+ {
+  "t": "T1 1917x916 p1 text hidden",
+  "ok": true,
+  "detail": "ds0=27.95 ds1=27.95 btn=0 words=8"
+ },
+ {
+  "t": "T1 1917x916 intro paragraph fully revealed",
+  "ok": true,
+  "detail": "lines=[{\"e\":0,\"f\":0,\"a\":1,\"d\":1},{\"e\":0,\"f\":0,\"a\":1,\"d\":1},{\"e\":0,\"f\":0,\"a\":1,\"d\":1},{\"e\":0,\"f\":0,\"a\":1,\"d\":1},{\"e\":0,\"f\":0,\"a\":1,\"d\":1}]"
+ },
+ {
+  "t": "T1 1917x916 intro label revealed",
+  "ok": true,
+  "detail": "labelF=0.02"
+ },
+ {
+  "t": "T1 1917x916 intro bg white",
+  "ok": true,
+  "detail": "bg=rgb(255, 255, 255)"
+ },
+ {
+  "t": "T2 1917x916 no growth right of 80vw",
+  "ok": true,
+  "detail": "bad=0"
+ },
+ {
+  "t": "T2 1917x916 no growth left of 20vw",
+  "ok": true,
+  "detail": "bad=0"
+ },
+ {
+  "t": "T3 1917x916 visible panel counts match reference",
+  "ok": true,
+  "detail": "no ref data"
+ },
+ {
+  "t": "T4 1917x916 reverse restores start 3x",
+  "ok": true,
+  "detail": "w=[15.0,15.0,15.0,15.0] h=[87.0,87.0,87.0,87.0] w=[15.0,15.0,15.0,15.0] h=[87.0,87.0,87.0,87.0] w=[15.0,15.0,15.0,15.0] h=[87.0,87.0,87.0,87.0]"
+ },
+ {
+  "t": "T5 1917x916 no horizontal doc overflow",
+  "ok": true,
+  "detail": "dw=1917 cw=1917"
+ },
+ {
+  "t": "T1 1920x1080 intro left 38.4vw",
+  "ok": true,
+  "detail": "il=38.50"
+ },
+ {
+  "t": "T1 1920x1080 p1 left 64.5 (+-1.5)",
+  "ok": true,
+  "detail": "p1L=64.57"
+ },
+ {
+  "t": "T1 1920x1080 p1 width 21.1 (+-1.5)",
+  "ok": true,
+  "detail": "p1W=20.96"
+ },
+ {
+  "t": "T1 1920x1080 p1 imgH 84.5 (+-2)",
+  "ok": true,
+  "detail": "p1H=84.31"
+ },
+ {
+  "t": "T1 1920x1080 p2 left 85.6 (+-1.5)",
+  "ok": true,
+  "detail": "p2L=85.52"
+ },
+ {
+  "t": "T1 1920x1080 p2 width 15 (+-1.5)",
+  "ok": true,
+  "detail": "p2W=15.00"
+ },
+ {
+  "t": "T1 1920x1080 p1 text hidden",
+  "ok": true,
+  "detail": "ds0=28 ds1=28 btn=0 words=8"
+ },
+ {
+  "t": "T1 1920x1080 intro paragraph fully revealed",
+  "ok": true,
+  "detail": "lines=[{\"e\":0,\"f\":0,\"a\":1,\"d\":1},{\"e\":0,\"f\":0,\"a\":1,\"d\":1},{\"e\":0,\"f\":0,\"a\":1,\"d\":1},{\"e\":0,\"f\":0,\"a\":1,\"d\":1}]"
+ },
+ {
+  "t": "T1 1920x1080 intro label revealed",
+  "ok": true,
+  "detail": "labelF=0"
+ },
+ {
+  "t": "T1 1920x1080 intro bg white",
+  "ok": true,
+  "detail": "bg=rgb(255, 255, 255)"
+ },
+ {
+  "t": "T2 1920x1080 no growth right of 80vw",
+  "ok": true,
+  "detail": "bad=0"
+ },
+ {
+  "t": "T2 1920x1080 no growth left of 20vw",
+  "ok": true,
+  "detail": "bad=0"
+ },
+ {
+  "t": "T3 1920x1080 visible panel counts match reference",
+  "ok": true,
+  "detail": "il≈60:got=1/want=1@p1L=86.2 il≈45:got=2/want=2@p1L=71.1 il≈30:got=2/want=2@p1L=56.0 il≈15:got=2/want=2@p1L=41.1 il≈0:got=2/want=2@p1L=26.1 il≈-15:got=3/want=3@p1L=11.0"
+ },
+ {
+  "t": "T4 1920x1080 reverse restores start 3x",
+  "ok": true,
+  "detail": "w=[15.0,15.0,15.0,15.0] h=[87.0,87.0,87.0,87.0] w=[15.0,15.0,15.0,15.0] h=[87.0,87.0,87.0,87.0] w=[15.0,15.0,15.0,15.0] h=[87.0,87.0,87.0,87.0]"
+ },
+ {
+  "t": "T5 1920x1080 no horizontal doc overflow",
+  "ok": true,
+  "detail": "dw=1920 cw=1920"
+ },
+ {
+  "t": "T1 1440x900 intro left 38.4vw",
+  "ok": true,
+  "detail": "il=38.53"
+ },
+ {
+  "t": "T1 1440x900 p1 left 64.5 (+-1.5)",
+  "ok": true,
+  "detail": "p1L=64.60"
+ },
+ {
+  "t": "T1 1440x900 p1 width 21.1 (+-1.5)",
+  "ok": true,
+  "detail": "p1W=20.93"
+ },
+ {
+  "t": "T1 1440x900 p1 imgH 84.5 (+-2)",
+  "ok": true,
+  "detail": "p1H=84.32"
+ },
+ {
+  "t": "T1 1440x900 p2 left 85.6 (+-1.5)",
+  "ok": true,
+  "detail": "p2L=85.53"
+ },
+ {
+  "t": "T1 1440x900 p2 width 15 (+-1.5)",
+  "ok": true,
+  "detail": "p2W=15.00"
+ },
+ {
+  "t": "T1 1440x900 p1 text hidden",
+  "ok": true,
+  "detail": "ds0=21 ds1=21 btn=0 words=8"
+ },
+ {
+  "t": "T1 1440x900 intro paragraph fully revealed",
+  "ok": true,
+  "detail": "lines=[{\"e\":0,\"f\":0,\"a\":1,\"d\":1},{\"e\":0,\"f\":0,\"a\":1,\"d\":1},{\"e\":0,\"f\":0,\"a\":1,\"d\":1},{\"e\":0,\"f\":0,\"a\":1,\"d\":1}]"
+ },
+ {
+  "t": "T1 1440x900 intro label revealed",
+  "ok": true,
+  "detail": "labelF=0"
+ },
+ {
+  "t": "T1 1440x900 intro bg white",
+  "ok": true,
+  "detail": "bg=rgb(255, 255, 255)"
+ },
+ {
+  "t": "T2 1440x900 no growth right of 80vw",
+  "ok": true,
+  "detail": "bad=0"
+ },
+ {
+  "t": "T2 1440x900 no growth left of 20vw",
+  "ok": true,
+  "detail": "bad=0"
+ },
+ {
+  "t": "T3 1440x900 visible panel counts match reference",
+  "ok": true,
+  "detail": "il≈60:got=1/want=1@p1L=85.9 il≈45:got=2/want=2@p1L=70.9 il≈30:got=2/want=2@p1L=56.1 il≈15:got=2/want=2@p1L=41.1 il≈0:got=2/want=2@p1L=26.1 il≈-15:got=3/want=3@p1L=11.0"
+ },
+ {
+  "t": "T4 1440x900 reverse restores start 3x",
+  "ok": true,
+  "detail": "w=[15.0,15.0,15.0,15.0] h=[87.0,87.0,87.0,87.0] w=[15.0,15.0,15.0,15.0] h=[87.0,87.0,87.0,87.0] w=[15.0,15.0,15.0,15.0] h=[87.0,87.0,87.0,87.0]"
+ },
+ {
+  "t": "T5 1440x900 no horizontal doc overflow",
+  "ok": true,
+  "detail": "dw=1440 cw=1440"
+ },
+ {
+  "t": "T5 no console warnings",
+  "ok": true,
+  "detail": "warnings=0 "
+ }
+]

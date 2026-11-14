@@ -1,0 +1,10 @@
+import { launchChrome, connectCDP, evalJS, setViewport, sleep } from './lib/cdp.mjs'
+const chrome = launchChrome(9332, 'minediag2', { w: 1440, h: 900 })
+const { ws, send } = await connectCDP(9332)
+await send('Runtime.enable')
+await setViewport(send, 1440, 900)
+await send('Page.navigate', { url: 'http://127.0.0.1:5173/?debug=1' })
+await sleep(15000)
+const r = await evalJS(send, `(() => JSON.stringify({ st: typeof ScrollTrigger, gs: typeof gsap, mfd: typeof window.__M_FD__, tl: typeof window.__TRACK_TL__, lenisG: typeof lenis }))()`).catch((e) => 'ERR ' + e.message)
+console.log(r)
+ws.close(); chrome.kill()

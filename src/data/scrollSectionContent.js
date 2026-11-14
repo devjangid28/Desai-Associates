@@ -27,6 +27,40 @@ export const TERMS = [
   },
 ]
 
+// Last-project ending (reference Site 5th block): vertical "carousel + text"
+// ending content. Clean English only.
+export const LAST_ITEM = {
+  panel: {
+    num: '05',
+    year: '2024',
+    place: 'MONTROVE',
+    title: 'Pol43',
+    titleFont: 'f-izmir',
+    bg: 'bg-grey',
+    bgBtn: 'btn--bg-grey',
+    href: '',
+    btn: 'Coming soon',
+    disabled: true,
+    ratio: '2000 / 1000',
+    img: `${IMG}/2026/04/HOME_8_POL-1.jpg`,
+  },
+  // four giant title lines; line 2 keeps the visible gap after "THAT"
+  titleLines: [
+    'WHO SAID',
+    'THAT PLEASURE',
+    'CANNOT BE',
+    'FUNCTIONAL',
+  ],
+  paragraph:
+    'We create spaces that do not submit to trends, but prefer to take the path of crafts, local workshops, sustainability and serving the enjoyment of their occupants. Spaces for calm, but also to be able to share them.',
+  carouselImgs: [
+    `${IMG}/2026/04/HOME_8_POghjL.jpg`,
+    `${IMG}/2026/04/HOME_8_POLdfg.jpg`,
+  ],
+  linkHref: '/proyectos',
+  linkLabel: 'See all',
+}
+
 export const PROJECTS = [
   {
     num: '01',
@@ -83,33 +117,4 @@ export const PROJECTS = [
   },
 ]
 
-export const LAST_PROJECT = {
-  num: '05',
-  year: '2024',
-  place: 'MONTROVE',
-  title: 'POL43',
-  titleFont: 'f-izmir',
-  bg: 'bg-grey',
-  bgBtn: 'btn--bg-grey',
-  href: '',
-  btn: 'Coming soon',
-  disabled: true,
-  ratio: '2000 / 1414',
-  img: `${IMG}/2026/04/HOME_8_POL-1.jpg`,
-  carousel: [
-    { ratio: '2000 / 1414', img: `${IMG}/2026/04/HOME_8_POghjL.jpg` },
-    { ratio: '2000 / 1414', img: `${IMG}/2026/04/HOME_8_POLdfg.jpg` },
-  ],
-  titleLines: [
-    { text: 'Who said', align: 't-left' },
-    { text: 'that pleasure', align: 't-left' },
-    { text: 'cannot be', align: 't-right' },
-    { text: 'functional', align: 't-right' },
-  ],
-  text: 'We create spaces that do not bow to trends, but instead choose the path of craftsmanship, local workshops, sustainability and serving the enjoyment of their occupants. Spaces of calm, but also spaces to be shared.',
-}
 
-export const CIERRE = {
-  down: `${IMG}/2026/04/Foto-08-scaled-1.jpg`,
-  up: `${IMG}/2026/04/HOME_8_cierre2-1.jpg`,
-}
